@@ -1,0 +1,10 @@
+build.gradle
+gradle
+gradlew
+gradlew.bat
+local.properties
+MeYodaDemoProject.iml
+settings.gradle
+.DS_Store
+.idea
+.gradle
