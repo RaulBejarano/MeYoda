@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:background="@drawable/universo">
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nombre"
+            android:id="@+id/nombre"
+            android:textColor="#e5e000"
+            android:textSize="40dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Apellidos"
+            android:id="@+id/apellidos"
+            android:textColor="#e5e000"
+            android:textSize="40dp"
+            android:layout_below="@+id/nombre"
+            android:layout_alignRight="@+id/nombre"
+            android:layout_marginTop="12dp"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="email"
+            android:id="@+id/email"
+            android:textColor="#e5e000"
+            android:textSize="40dp"
+            android:layout_below="@+id/apellidos"
+            android:layout_centerHorizontal="true"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Número de ventas"
+            android:id="@+id/nventas"
+            android:textColor="#e5e000"
+            android:textSize="35dp"
+            android:layout_below="@+id/textView"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="12dp"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Número de pujas"
+            android:id="@+id/textView"
+            android:textColor="#e5e000"
+            android:textSize="35dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="100"
+            android:id="@+id/npujas"
+            android:textColor="#e5e000"
+            android:textSize="35dp"
+            android:layout_alignTop="@+id/textView"
+            android:layout_alignParentRight="true"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="100"
+            android:id="@+id/textView2"
+            android:textColor="#e5e000"
+            android:textSize="35dp"
+            android:layout_alignTop="@+id/nventas"
+            android:layout_alignLeft="@+id/npujas"/>
+
+</RelativeLayout>
