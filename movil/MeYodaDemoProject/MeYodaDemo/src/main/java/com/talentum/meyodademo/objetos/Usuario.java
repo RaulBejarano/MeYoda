@@ -12,47 +12,43 @@ public class Usuario {
     private String clave ;
 
 
-    public int getId(){
+    public int getId() {
         return id;
     }
 
-    public void setId(int x){
-        id=x;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String  getNombre(){
+    public String getNombre() {
         return nombre;
     }
 
-    public void setNombre(String n){
-        nombre=n;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public String getApellidos(){
+    public String getApellidos() {
         return apellidos;
     }
 
-    public void setApellidos(String a){
-        apellidos=a;
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
     }
 
-    public String getEmail(){
+    public String getEmail() {
         return email;
     }
 
-    public void setEmail(String e){
-        email=e;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getClave(){
+    public String getClave() {
         return clave;
     }
 
-    public void setClave(String c){
-        clave=c;
+    public void setClave(String clave) {
+        this.clave = clave;
     }
-
-
-
-
 }
