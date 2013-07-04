@@ -23,6 +23,15 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:inputType="text"
-            />
+            android:layout_toLeftOf="@+id/botonBuscar"/>
+
+    <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Buscar"
+            android:id="@+id/botonBuscar"
+            android:layout_alignBottom="@+id/searchView"
+            android:layout_alignParentRight="true"/>
 
 </RelativeLayout>
