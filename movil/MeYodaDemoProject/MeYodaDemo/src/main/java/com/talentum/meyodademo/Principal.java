@@ -23,7 +23,7 @@ public class Principal extends Activity {
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         boolean sesion = pref.getBoolean("sesion",false);
         if(sesion){
-            lanzarIntent();
+            lanzarIntent(true);
         }
         else{
             //Obtenemos las variables
@@ -59,6 +59,12 @@ public class Principal extends Activity {
                     }
                 }
             });
+            botonRegistrar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    lanzarIntent(false);
+                }
+            });
         }
 
 
@@ -73,10 +79,18 @@ public class Principal extends Activity {
         return true;
     }
 
-    public void lanzarIntent(){
-        //Intent intent = new Intent(Principal.this, Navigation.class);
-        //Principal.this.startActivity(intent);
-        Principal.this.finish();
+    public void lanzarIntent(boolean type){
+        if(type){
+            Intent intent = new Intent(Principal.this, Navigation.class);
+            Principal.this.startActivity(intent);
+            Principal.this.finish(); // kill activity si el login ha sido correcto
+        }
+        else {
+            Intent intent = new Intent(Principal.this, Registro.class);
+            Principal.this.startActivity(intent);
+        }
+
+
     }
 
 
@@ -86,6 +100,7 @@ public class Principal extends Activity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+            progress.setMessage("Comprobando datos de usuario");
             progress.show();
             progress.setCancelable(false);
         }
@@ -95,7 +110,12 @@ public class Principal extends Activity {
             String user = strings[0];
             String pass = strings[1];
             // peticion servidor
-            return false;
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return true;
         }
 
         @Override
@@ -107,10 +127,10 @@ public class Principal extends Activity {
                 SharedPreferences.Editor editor = pref.edit();
                 editor.putBoolean("sesion", true);
                 editor.commit();
-                lanzarIntent();
+                lanzarIntent(true);
             }
             else{
-                Toast.makeText(getApplicationContext(), "Datos incorrectos introducido tu has", Toast.LENGTH_LONG);
+                Toast.makeText(getApplicationContext(), "Datos incorrectos introducido tu has", Toast.LENGTH_LONG).show();
             }
         }
     }
