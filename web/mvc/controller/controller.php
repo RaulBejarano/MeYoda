@@ -30,7 +30,7 @@
 		echo $userId;
 				
 	} else if ($op = "registro"){
-		
+		if (isset($_GET["nombre"]) && isset($_GET["apellidos"]) && isset($_GET["email"]) && isset($_GET["contrasena"])){
 			$sql="INSERT INTO Usuario (nombre, apellidos, email, contrasena) VALUES (
 			'".$_GET['nombre']."',
 			'".$_GET['apellidos']."',
@@ -44,7 +44,9 @@
 			} else {
 				echo "false"
 			}						
-			
+		} else {
+			echo "false"
+		}
 	
 	} else if ($op = ""){
 		
