@@ -11,7 +11,7 @@
 		
 	$op = $_GET["op"];
 
-	if ($op = "login"){ //OPERACION DE LOGIN
+	if ($op == "login"){ //OPERACION DE LOGIN
 
 		if (isset($_GET["email"]) && isset($_GET["contrasena"])){
 			
@@ -34,20 +34,21 @@
 		}
 
 									
-	} else if ($op = "registro"){
+	} else if ($op == "registro"){
+
 		if (isset($_GET["nombre"]) && isset($_GET["apellidos"]) && isset($_GET["email"]) && isset($_GET["contrasena"])){
 			$sql="INSERT INTO Usuario (nombre, apellidos, email, contrasena) VALUES (
 			'".$_GET['nombre']."',
 			'".$_GET['apellidos']."',
 			'".$_GET['email']."',
-			MD5('".$_GET['contrasena']."'),
+			MD5('".$_GET['contrasena']."')
 			)";
 		
 			
-			$result = $linkbd->query($sql);
+
 			
-			if ($linkbd->affected_rows == 1) {
-				echo "true"
+			if ($linkbd->query($sql)) {
+				echo "true";
 			
 			}else{
 				echo "false";
