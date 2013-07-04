@@ -30,7 +30,7 @@ public class Mercado extends Fragment{
             }
         });
 
-        //SearchView busqueda = (SearchView) fragment.findViewById(R.id.searchView);
+        SearchView busqueda = (SearchView) fragment.findViewById(R.id.searchView);
         //ListView lista = (ListView) fragment.findViewById(R.id.list);
 
 
@@ -39,7 +39,7 @@ public class Mercado extends Fragment{
         return fragment;
     }
 
-    public void printMercado(View V){
+    public void printMercado(View fragment){
         //conseguir información de usuario
 
     }
