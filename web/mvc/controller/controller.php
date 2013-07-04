@@ -16,14 +16,17 @@
 	$op = $_GET["op"];
 
 	if ($op = "login"){ //OPERACION DE LOGIN
-		
-		$sql="SELECT id FROM Usuario WHERE email = ".$_GET["email"]." AND contrasena = MD5(".$_GET["contrasena"].")";
-		$result = lanzarQuery($sql);
 		$userId = "";
-		while($row = mysqli_fetch_array($result)){ // Solo devolverá una linea porque email es clave unica
-			 $userId=$row['id']
-		}
+		
+		if (isset($_GET["email"]) && isset($_GET["contrasena"])){
+			$sql="SELECT id FROM Usuario WHERE email = ".$_GET["email"]." AND contrasena = MD5(".$_GET["contrasena"].")";
+			$result = lanzarQuery($sql);
 			
+			while($row = mysqli_fetch_array($result)){ // Solo devolverá una linea porque email es clave unica
+				$userId=$row['id']
+			}
+		}
+					
 		echo $userId;
 				
 	} else if ($op = "registro"){
@@ -35,16 +38,14 @@
 			MD5('".$_GET['contrasena']."'),
 			)";
 		
-			$result = lanzarQuery(&linkbd, $sql);
+			$result = lanzarQuery($linkbd, $sql);
 			if($result) {
 				echo "true"	
 			} else {
 				echo "false"
 			}						
 			
-		}else{
-			echo "[ERROR] Conexion BBDD"
-		}
+	
 	} else if ($op = ""){
 		
 	}
