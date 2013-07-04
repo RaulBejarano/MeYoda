@@ -6165,3 +6165,13 @@ a.badge:focus {
 .affix {
   position: fixed;
 }
+
+titulo{
+	text-align:center;
+	font-size: 25%;
+	color: #000; 
+	
+}
+titulo:hover{
+	color: #8a8683;
+}
