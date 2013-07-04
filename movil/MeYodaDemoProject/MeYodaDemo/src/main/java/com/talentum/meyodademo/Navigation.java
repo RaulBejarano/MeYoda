@@ -19,11 +19,9 @@ public class Navigation extends Activity {
 
         ActionBar actionBar;
         actionBar = getActionBar();
-        actionBar.setDisplayShowTitleEnabled(false);
-
-        actionBar.setDisplayShowHomeEnabled(false);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-
+        actionBar.setDisplayShowTitleEnabled(false);
+        actionBar.setDisplayShowHomeEnabled(false);
         Perfil perfil = new Perfil();
         Favoritos fav = new Favoritos();
         Mazo mazo = new Mazo();
@@ -43,7 +41,6 @@ public class Navigation extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.principal, menu);
-
         return true;
     }
 

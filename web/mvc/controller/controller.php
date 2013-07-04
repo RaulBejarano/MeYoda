@@ -15,19 +15,22 @@
 	
 	$op = $_GET["op"];
 
-	if ($op=="login"){ //OPERACION DE LOGIN
-		
-		$sql="SELECT id FROM Usuario WHERE email = ".$_GET["email"]." AND contrasena = MD5(".$_GET["contrasena"].")";
-		$result = lanzarQuery($sql);
+	if ($op = "login"){ //OPERACION DE LOGIN
 		$userId = "";
-		while($row = mysqli_fetch_array($result)){ // Solo devolverá una linea porque email es clave unica
-			 $userId=$row['id']
-		}
+		
+		if (isset($_GET["email"]) && isset($_GET["contrasena"])){
+			$sql="SELECT id FROM Usuario WHERE email = ".$_GET["email"]." AND contrasena = MD5(".$_GET["contrasena"].")";
+			$result = lanzarQuery($sql);
 			
+			while($row = mysqli_fetch_array($result)){ // Solo devolverá una linea porque email es clave unica
+				$userId=$row['id']
+			}
+		}
+					
 		echo $userId;
 				
 	} else if ($op = "registro"){
-		
+		if (isset($_GET["nombre"]) && isset($_GET["apellidos"]) && isset($_GET["email"]) && isset($_GET["contrasena"])){
 			$sql="INSERT INTO Usuario (nombre, apellidos, email, contrasena) VALUES (
 			'".$_GET['nombre']."',
 			'".$_GET['apellidos']."',
@@ -35,16 +38,16 @@
 			MD5('".$_GET['contrasena']."'),
 			)";
 		
-			$result = lanzarQuery(&linkbd, $sql);
+			$result = lanzarQuery($linkbd, $sql);
 			if($result) {
 				echo "true"	
 			} else {
 				echo "false"
 			}						
-			
-		}else{
-			echo "[ERROR] Conexion BBDD"
+		} else {
+			echo "false"
 		}
+	
 	} else if ($op = ""){
 		
 	}
