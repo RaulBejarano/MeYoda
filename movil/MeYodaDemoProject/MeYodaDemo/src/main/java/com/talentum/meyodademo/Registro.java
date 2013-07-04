@@ -44,7 +44,6 @@ public class Registro extends Activity implements View.OnClickListener {
         String email =  ((EditText)findViewById(R.id.campoEmail)).getText().toString();
         String clave =  ((EditText)findViewById(R.id.campoContrasena)).getText().toString();
         String confirmClave = ((EditText)findViewById(R.id.campoConfirmacion)).getText().toString();
-        String claveEncriptada ;
 
 
         if(nombre.length()==0||apellidos.length()==0||email.length()==0||clave.length()==0){
@@ -54,15 +53,17 @@ public class Registro extends Activity implements View.OnClickListener {
 
         if(nombre.contains(" ")){
             Toast.makeText(Registro.this, "Error en el nombre", Toast.LENGTH_LONG).show();
+            return;
         }
 
         if(apellidos.split(" ").length>2){
             Toast.makeText(Registro.this, "Error en los apellidos", Toast.LENGTH_LONG).show();
+            return;
         }
 
         if(email.contains(" ")||!email.contains("@")||!email.contains(".")){
-
             Toast.makeText(Registro.this, "Error en el email", Toast.LENGTH_LONG).show();
+            return;
         }
 
 
@@ -70,10 +71,13 @@ public class Registro extends Activity implements View.OnClickListener {
             Toast.makeText(Registro.this, "Las claves no coinciden", Toast.LENGTH_LONG).show();
         }
 
+        String claveEncriptada = md5(clave);
+
+
 
     }
 
-    /*public static final String md5(final String s) {
+    public static final String md5(final String s) {
         try {
             // Create MD5 Hash
             MessageDigest digest = java.security.MessageDigest
@@ -95,7 +99,7 @@ public class Registro extends Activity implements View.OnClickListener {
             e.printStackTrace();
         }
         return "";
-    }*/
+    }
 
 
 
