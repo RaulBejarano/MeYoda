@@ -48,15 +48,16 @@
 			
 			if ($linkbd->affected_rows == 1) {
 				echo "true"
-				exit;
+			
 			}else{
 				echo "false";
-				exit;
+			
 			}						
 		}
 		
 		echo "false";
-	
+		exit;
+		
 	} else if ($op = ""){
 		
 	}
