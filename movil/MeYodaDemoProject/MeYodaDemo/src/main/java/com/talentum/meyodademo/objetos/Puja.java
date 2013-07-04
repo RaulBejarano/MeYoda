@@ -7,8 +7,8 @@ public class Puja {
 
 
     private int id ;
-    private int idCarta;
-    private int idVenta;
+    private Carta carta;
+    private Venta venta;
     private float precioPuja;
 
     public int getId() {
@@ -19,20 +19,20 @@ public class Puja {
         this.id = id;
     }
 
-    public int getIdCarta() {
-        return idCarta;
+    public Carta getCarta() {
+        return carta;
     }
 
-    public void setIdCarta(int idCarta) {
-        this.idCarta = idCarta;
+    public void setCarta(Carta carta) {
+        this.carta = carta;
     }
 
-    public int getIdVenta() {
-        return idVenta;
+    public Venta getVenta() {
+        return venta;
     }
 
-    public void setIdVenta(int idVenta) {
-        this.idVenta = idVenta;
+    public void setVenta(Venta venta) {
+        this.venta = venta;
     }
 
     public float getPrecioPuja() {

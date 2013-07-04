@@ -21,7 +21,7 @@
                 android:textSize="25dp"
                 android:layout_alignParentTop="true"
                 android:layout_alignLeft="@+id/campoContrasena"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="50dp"
                 android:hint="Nombre"
                 android:background="#4a4a4a"
                 android:textColor="#fefefe"
@@ -90,7 +90,7 @@
                 android:id="@+id/buttonEnviar"
                 android:layout_below="@+id/campoConfirmacion"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="21dp"
+                android:layout_marginTop="50dp"
 
                 />
     </RelativeLayout>

@@ -116,7 +116,9 @@
 
                         echo '  
                         <br>
-                        Demandas: 
+                        Precio venta: '; 
+                        echo '15€';
+                        echo'
                       </li>                         
                     </ul>
 
@@ -138,13 +140,13 @@
       {
         $diezSiguientes = $desde + 8;
         $diezAnteriores = $desde - 8;
-        echo "<a href = ventas.php?desde=$diezAnteriores>[8 anteriores] </a>";
-        echo "<a href = ventas.php?desde=$diezSiguientes> [8 siguientes]</a>";
+        echo "<a href = tusventas.php?desde=$diezAnteriores>[8 anteriores] </a>";
+        echo "<a href = tusventas.php?desde=$diezSiguientes> [8 siguientes]</a>";
       }
       else
       {
         $desde = $desde - 8;
-        echo "<a href = ventas.php?desde=$desde>[8 anteriores]</a>";
+        echo "<a href = tusventas.php?desde=$desde>[8 anteriores]</a>";
       }
                   ?>
 

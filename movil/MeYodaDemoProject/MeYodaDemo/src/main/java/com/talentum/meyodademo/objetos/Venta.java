@@ -6,8 +6,8 @@ package com.talentum.meyodademo.objetos;
 public class Venta {
 
     private int id;
-    private int idCarta ;
-    private int idUsuario;
+    private Usuario usuario;
+    private Carta carta;
     private float precioDeseado ;
     private boolean aprobada ;
 
@@ -19,20 +19,20 @@ public class Venta {
         this.id = id;
     }
 
-    public int getIdCarta() {
-        return idCarta;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setIdCarta(int idCarta) {
-        this.idCarta = idCarta;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
-    public int getIdUsuario() {
-        return idUsuario;
+    public Carta getCarta() {
+        return carta;
     }
 
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setCarta(Carta carta) {
+        this.carta = carta;
     }
 
     public float getPrecioDeseado() {
