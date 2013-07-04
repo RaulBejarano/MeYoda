@@ -1,5 +1,10 @@
 package com.talentum.meyodademo;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -13,6 +18,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import org.apache.http.HttpResponse;
+import org.apache.http.HttpStatus;
+import org.apache.http.StatusLine;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+
+
 //esto es una pruebaaaaa FORZA DEPOR!!!
 public class Principal extends Activity {
 
@@ -109,13 +123,34 @@ public class Principal extends Activity {
         protected Boolean doInBackground(String... strings) {
             String user = strings[0];
             String pass = strings[1];
-            // peticion servidor
+            String url = "http://manu.juanlu.is/meyoda/web/mvc/controller?op=login&email="+user+"&contrasena="+pass;
+
+            HttpClient httpclient = new DefaultHttpClient();
+            HttpResponse response = null;
             try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
+                response = httpclient.execute(new HttpGet(url));
+            } catch (ClientProtocolException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
-            return true;
+            StatusLine statusLine = response.getStatusLine();
+            if(statusLine.getStatusCode() == HttpStatus.SC_OK){
+                ByteArrayOutputStream out = new ByteArrayOutputStream();
+                try {
+                    response.getEntity().writeTo(out);
+                    out.close();
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                String responseString = out.toString();
+                Toast.makeText(getApplicationContext(), responseString, Toast.LENGTH_LONG).show();
+                return true;
+            }
+            else return false;
         }
 
         @Override
