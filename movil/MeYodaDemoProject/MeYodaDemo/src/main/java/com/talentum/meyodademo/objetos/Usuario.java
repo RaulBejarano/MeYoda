@@ -1,15 +1,20 @@
 package com.talentum.meyodademo.objetos;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 /**
  * Created by Pablo on 7/4/13.
  */
 public class Usuario {
+
 
     private int id ;
     private String nombre ;
     private String apellidos ;
     private String email ;
     private String clave ;
+
 
 
     public int getId() {
@@ -51,4 +56,8 @@ public class Usuario {
     public void setClave(String clave) {
         this.clave = clave;
     }
+
+
+
+
 }
