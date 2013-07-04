@@ -1,5 +1,7 @@
 package com.talentum.meyodademo.requests;
 
+import android.net.Uri;
+import android.util.Log;
 import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
@@ -36,6 +38,9 @@ public class HttpRequest {
             } catch (ClientProtocolException e) {
                 e.printStackTrace();
             } catch (IOException e) {
+                e.printStackTrace();
+            }
+            catch (RuntimeException e){
                 e.printStackTrace();
             }
             StatusLine statusLine = response.getStatusLine();
