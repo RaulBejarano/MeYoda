@@ -43,6 +43,7 @@ settings.gradle
 *.exe
 *.o
 *.so
+out
 
 # Packages
 *.7z
@@ -68,3 +69,4 @@ settings.gradle
 Icon?
 ehthumbs.db
 Thumbs.db
+
