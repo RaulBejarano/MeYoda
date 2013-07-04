@@ -1,5 +1,10 @@
 package com.talentum.meyodademo;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -13,6 +18,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.talentum.meyodademo.requests.HttpRequest;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.HttpStatus;
+import org.apache.http.StatusLine;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+
+
 //esto es una pruebaaaaa FORZA DEPOR!!!
 public class Principal extends Activity {
 
@@ -23,28 +40,26 @@ public class Principal extends Activity {
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         boolean sesion = pref.getBoolean("sesion",false);
         if(sesion){
-            lanzarIntent();
+            lanzarIntent(true);
         }
         else{
             //Obtenemos las variables
-            final EditText email=  (EditText)findViewById(R.id.email);
-            final EditText contrasena= (EditText) findViewById(R.id.contrasena);
-            final Button botonEntrar= (Button) findViewById(R.id.botonEntrar);
-            final Button botonRegistrar= (Button) findViewById(R.id.botonRegistrar);
 
+            Button botonEntrar= (Button) findViewById(R.id.botonEntrar);
+            Button botonRegistrar= (Button) findViewById(R.id.botonRegistrar);
 
-
-            //convertimos a una cadena de texto
-            final String textoEmail = email.getText().toString();
-            final String textoContrasena = contrasena.getText().toString();
 
             //Asignamos funciones a los botones
             botonEntrar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    //convertimos a una cadena de texto
+                    EditText email=  (EditText)findViewById(R.id.email);
+                    EditText contrasena= (EditText) findViewById(R.id.contrasena);
+                    String textoEmail = email.getText().toString();
+                    String textoContrasena = contrasena.getText().toString();
                     //Comprobamos si están todos los campos completos
                     if ((textoEmail=="") || (textoContrasena=="")){
-
                         //Toast de aviso
                         Context context = getApplicationContext();
                         CharSequence text = "Introducir tu mail y contraseña tu has";
@@ -57,6 +72,12 @@ public class Principal extends Activity {
                         comprobarUsuario comp = new comprobarUsuario();
                         comp.execute(textoEmail,textoContrasena);
                     }
+                }
+            });
+            botonRegistrar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    lanzarIntent(false);
                 }
             });
         }
@@ -73,10 +94,18 @@ public class Principal extends Activity {
         return true;
     }
 
-    public void lanzarIntent(){
-        //Intent intent = new Intent(Principal.this, Navigation.class);
-        //Principal.this.startActivity(intent);
-        Principal.this.finish();
+    public void lanzarIntent(boolean type){
+        if(type){
+            Intent intent = new Intent(Principal.this, Navigation.class);
+            Principal.this.startActivity(intent);
+            Principal.this.finish(); // kill activity si el login ha sido correcto
+        }
+        else {
+            Intent intent = new Intent(Principal.this, Registro.class);
+            Principal.this.startActivity(intent);
+        }
+
+
     }
 
 
@@ -86,6 +115,7 @@ public class Principal extends Activity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+            progress.setMessage("Comprobando datos de usuario");
             progress.show();
             progress.setCancelable(false);
         }
@@ -94,8 +124,18 @@ public class Principal extends Activity {
         protected Boolean doInBackground(String... strings) {
             String user = strings[0];
             String pass = strings[1];
-            // peticion servidor
-            return false;
+            String request = "op=login&email="+user+"&contrasena="+pass;
+            HttpRequest login = new HttpRequest(request);
+            String responseString = login.make();
+            if(responseString.isEmpty()) return false;
+            else {
+                SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                SharedPreferences.Editor editor = pref.edit();
+                editor.putBoolean("sesion", true);
+                editor.putString("userid", responseString);
+                editor.commit();
+                return true;
+            }
         }
 
         @Override
@@ -103,14 +143,10 @@ public class Principal extends Activity {
             super.onPostExecute(aBoolean);
             progress.dismiss();
             if(aBoolean){
-                SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                SharedPreferences.Editor editor = pref.edit();
-                editor.putBoolean("sesion", true);
-                editor.commit();
-                lanzarIntent();
+                lanzarIntent(true);
             }
             else{
-                Toast.makeText(getApplicationContext(), "Datos incorrectos introducido tu has", Toast.LENGTH_LONG);
+                Toast.makeText(getApplicationContext(), "Datos incorrectos introducido tu has", Toast.LENGTH_LONG).show();
             }
         }
     }

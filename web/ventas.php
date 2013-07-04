@@ -51,11 +51,16 @@
 </head>
 	<!--Variables php    -->
 	<?php
+<<<<<<< HEAD
 	$linkbd=mysql_connect("mysql.manu.juanlu.is","talentum", "hypernova"); //Conexion BD
+=======
+	$linkbd=mysqli("mysql.manu.juanlu.is","talentum", "hypernova"); //Conexion BD
+>>>>>>> 1ae3ea63072d139ab31376cbf79c8e8fbb053c71
 	$linkbd1=mysql_select_db("meyodadb");
 	
 	?>
 	
+<<<<<<< HEAD
 
                   <?php
                     $resultado = mysql_query("select nombre from Carta", $linkbd)
@@ -72,18 +77,14 @@
                    while($fila = mysql_fetch_array($resultado)){
                    echo ' 
   <div class="span4">
+=======
+	
+	<div class="span4">
 
               <div class="widget wblack5">
 
                 <div class="widget-head">
-                  <div class="pull-left">';
-
-                      echo $fila['nombre'] ;
-                    
-                
-                       echo'                  </div>
-
-               
+                  <div class="pull-left">Yoda TodoPoderoso</div>
                   <div class="clearfix"></div>
                 </div>             
 
@@ -93,6 +94,79 @@
                     <!-- Visitors, pageview, bounce rate, etc., Sparklines plugin used -->
                     <ul class="current-status">
                       <li>
+                      		<a href=* > <img src="http://www.wizards.com/global/images/swtcg_expansion_aotc_famous1LargePic_en.jpg" height="160" width="180"/></a> 
+                      </li>
+                      <li>
+                        Precio estimado: 	
+                      	<br>
+                        Demandas: 
+                      </li> 		                    
+                    </ul>
+
+                  </div>
+                </div>
+
+              </div>
+              
+	</div>
+		<div class="span4">
+>>>>>>> 1ae3ea63072d139ab31376cbf79c8e8fbb053c71
+
+              <div class="widget wblack5">
+
+                <div class="widget-head">
+<<<<<<< HEAD
+                  <div class="pull-left">';
+
+                      echo $fila['nombre'] ;
+                    
+                
+                       echo'                  </div>
+
+               
+=======
+                  <div class="pull-left">Yoda TodoPoderosa</div>
+                  <div class="clearfix"></div>
+                </div>             
+
+                <div class="widget-content">
+                  <div class="padd">
+
+                    <!-- Visitors, pageview, bounce rate, etc., Sparklines plugin used -->
+                    <ul class="current-status">
+                      <li>
+                      		<a href=* > <img src="http://www.wizards.com/global/images/swtcg_expansion_anewhope_famous1LargePic_en.jpg" height="160" width="180"/></a> 
+                      </li>
+                      <li>
+                        Precio estimado: 	
+                      	<br>
+                        Demandas: 
+                      </li> 		                    
+                    </ul>
+
+                  </div>
+                </div>
+
+              </div>
+              
+	</div>
+	<div class="span4">
+
+              <div class="widget wblack5">
+
+                <div class="widget-head">
+                  <div class="pull-left">Yoda TodoPoderoso</div>
+>>>>>>> 1ae3ea63072d139ab31376cbf79c8e8fbb053c71
+                  <div class="clearfix"></div>
+                </div>             
+
+                <div class="widget-content">
+                  <div class="padd">
+
+                    <!-- Visitors, pageview, bounce rate, etc., Sparklines plugin used -->
+                    <ul class="current-status">
+                      <li>
+<<<<<<< HEAD
                           <a href=* > <img src="';
 
                           $url1 = mysql_fetch_array($url);
@@ -108,6 +182,15 @@
                         <br>
                         Demandas: 
                       </li>                         
+=======
+                      		<a href=* > <img src="http://1.bp.blogspot.com/-BhVtkyOUk4Y/T1DcLefgqMI/AAAAAAAAHYI/DIYnLnjuxAg/s320/sw1.jpg" height="160" width="180"/></a> 
+                      </li>
+                      <li>
+                        Precio estimado: 	
+                      	<br>
+                        Demandas: 
+                      </li> 		                    
+>>>>>>> 1ae3ea63072d139ab31376cbf79c8e8fbb053c71
                     </ul>
 
                   </div>
@@ -115,11 +198,45 @@
 
               </div>
               
+<<<<<<< HEAD
             </div>';
           }
                   ?>
 
 		
+=======
+	</div>
+	<div class="span4">
+
+             <div class="widget wblack5"> 
+
+                <div class="widget-head">
+                  <div class="pull-left">Yoda TodoPoderose</div>
+                  <div class="clearfix"></div>
+                </div>             
+
+                <div class="widget-content">
+                  <div class="padd">
+
+                    <!-- Visitors, pageview, bounce rate, etc., Sparklines plugin used -->
+                    <ul class="current-status">
+                      <li>
+                      		<a href=* > <img src="http://www.sonyinsider.com/wp-content/uploads/2008/12/dark_lightning.jpg" height="160" width="180"/></a> 
+                      </li>
+                      <li>
+                        Precio estimado: 	
+                      	<br>
+                        Demandas: 
+                      </li> 		                    
+                    </ul>
+
+                  </div>
+                </div>
+
+              <!-- </div> -->
+              
+	</div>
+>>>>>>> 1ae3ea63072d139ab31376cbf79c8e8fbb053c71
 
 
 

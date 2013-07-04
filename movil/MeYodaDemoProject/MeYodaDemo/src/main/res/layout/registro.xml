@@ -3,7 +3,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+              android:background="@drawable/universo">
 
     <RelativeLayout
             android:layout_width="fill_parent"
@@ -17,11 +18,14 @@
                 android:inputType="textPersonName"
                 android:ems="10"
                 android:id="@+id/campoNombre"
-                android:textSize="20dp"
+                android:textSize="25dp"
                 android:layout_alignParentTop="true"
                 android:layout_alignLeft="@+id/campoContrasena"
                 android:layout_marginTop="25dp"
-                android:hint="Nombre"/>
+                android:hint="Nombre"
+                android:background="#ffffff"
+                android:textColor="#000000"
+                />
 
         <EditText
                 android:layout_width="wrap_content"
@@ -33,19 +37,24 @@
                 android:layout_alignLeft="@+id/campoNombre"
                 android:layout_marginTop="16dp"
                 android:layout_alignRight="@+id/campoNombre"
-                android:hint="Apellidos"/>
+                android:hint="Apellidos"
+                android:background="#ffffff"
+                android:textColor="#000000"
+                android:textSize="25dp"/>
 
         <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
                 android:ems="10"
-                android:id="@+id/email"
-                android:textSize="20dp"
+                android:id="@+id/campoEmail"
+                android:textSize="25dp"
                 android:layout_below="@+id/campoApellidos"
                 android:layout_alignLeft="@+id/campoApellidos"
                 android:layout_marginTop="21dp"
-                android:hint="Email"/>
+                android:hint="Email"
+                android:background="#ffffff"
+                android:textColor="#000000"/>
 
         <EditText
                 android:layout_width="wrap_content"
@@ -53,10 +62,12 @@
                 android:inputType="textPassword"
                 android:ems="10"
                 android:id="@+id/campoContrasena"
-                android:textSize="20dp"
+                android:textSize="25dp"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
-                android:hint="Contraseña"/>
+                android:hint="Contraseña"
+                android:background="#ffffff"
+                android:textColor="#0b0607"/>
 
         <EditText
                 android:layout_width="wrap_content"
@@ -64,11 +75,13 @@
                 android:inputType="textPassword"
                 android:ems="10"
                 android:id="@+id/campoConfirmacion"
-                android:textSize="20dp"
+                android:textSize="25dp"
                 android:layout_below="@+id/campoContrasena"
                 android:layout_alignLeft="@+id/campoContrasena"
                 android:layout_marginTop="15dp"
-                android:hint="Confirmación"/>
+                android:hint="Confirmación"
+                android:background="#ffffff"
+                android:textColor="#060506"/>
 
         <Button
                 android:layout_width="wrap_content"
@@ -77,6 +90,22 @@
                 android:id="@+id/buttonEnviar"
                 android:layout_below="@+id/campoConfirmacion"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="21dp"/>
+                android:layout_marginTop="21dp"
+
+                />
     </RelativeLayout>
+
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/editText"
+            android:layout_below="@+id/campoNombre"
+            android:layout_alignLeft="@+id/campoNombre"
+            android:layout_marginTop="16dp"
+            android:layout_alignRight="@+id/campoNombre"
+            android:hint="Apellidos"
+            android:background="#ffffff"
+            android:layout_gravity="right|center_vertical"/>
 </LinearLayout>

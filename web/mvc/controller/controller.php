@@ -1,51 +1,65 @@
 <?php 
 	include '../model/model.php';
 
+	$linkbd = new mysqli("mysql.manu.juanlu.is","talentum","hypernova", "meyodadb");
+		
+	if(!$linkbd->select_db("meyodadb")){
+		
+		exit;
+	}
+		
+		
 	$op = $_GET["op"];
 
-	if ($op=="login"){ //OPERACION DE LOGIN
-		
-		$linkbd=mysqli("mysql.manu.juanlu.is","talentum","hypernova", "meyodadb");
-		if($linkbd->select_db("meyodadb")){
-			$sql="SELECT id FROM Usuario WHERE email = ".$_GET["email"]." AND contrasena = AES_ENCRYPT(".$_GET["contrasena"].", id)";
-		
-			$result = mysqli_query(&linkbd, $sql);
-			$userId = "";
-			while($row = mysqli_fetch_array($result)){ // Solo devolverá una linea porque email es clave unica
-				 $userId=$row['id']
-			}
-			if($userId!=""){
-				$_SESSION["userid"]=$userId;
+	if ($op = "login"){ //OPERACION DE LOGIN
+
+		if (isset($_GET["email"]) && isset($_GET["contrasena"])){
+			
+			$sql="SELECT id FROM Usuario WHERE email = '".$_GET["email"]."' AND contrasena = MD5('".$_GET["contrasena"]."') ";
+			
+			$result = $linkbd->query($sql);
+			
+			 // Solo devolverá una linea porque email es clave unica
+			if ($linkbd->affected_rows == 1) {
+				$row = mysqli_fetch_array($result);
+				echo $row['id'];
+				exit;
+			}else{
+				// echo "FAIL: " . $linkbd->error;
+				echo "";
+				exit;
 			}
 			
-			echo $userId;
-		}else{
-			echo "[ERROR] Conexion BBDD"
+			
 		}
-				
+
+									
 	} else if ($op = "registro"){
-		$linkbd=mysqli("mysql.manu.juanlu.is","talentum","hypernova", "meyodadb");
-		if($linkbd->select_db("meyodadb")){
+		if (isset($_GET["nombre"]) && isset($_GET["apellidos"]) && isset($_GET["email"]) && isset($_GET["contrasena"])){
 			$sql="INSERT INTO Usuario (nombre, apellidos, email, contrasena) VALUES (
 			'".$_GET['nombre']."',
-			'".$GET['apellidos']."',
-			'".$GET['email']."',
-			AES_ENCRYPT('".$GET['contrasena']."', id),
+			'".$_GET['apellidos']."',
+			'".$_GET['email']."',
+			MD5('".$_GET['contrasena']."'),
 			)";
 		
-			$result = mysqli_query(&linkbd, $sql);
-			if(result) {
-				echo "true"	
-			} else {
-				echo "false"
-			}						
 			
-		}else{
-			echo "[ERROR] Conexion BBDD"
+			$result = $linkbd->query($sql);
+			
+			if ($linkbd->affected_rows == 1) {
+				echo "true"
+				exit;
+			}else{
+				echo "false";
+				exit;
+			}						
+		} else {
+			echo "false";
 		}
-	}
-
 	
+	} else if ($op = ""){
+		
+	}
 
 
 ?>
