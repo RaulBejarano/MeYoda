@@ -15,7 +15,7 @@
 	
 	$op = $_GET["op"];
 
-	if ($op=="login"){ //OPERACION DE LOGIN
+	if ($op = "login"){ //OPERACION DE LOGIN
 		
 		$sql="SELECT id FROM Usuario WHERE email = ".$_GET["email"]." AND contrasena = MD5(".$_GET["contrasena"].")";
 		$result = lanzarQuery($sql);
