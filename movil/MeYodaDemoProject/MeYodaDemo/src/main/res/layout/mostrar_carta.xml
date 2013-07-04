@@ -1,51 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+<RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:background="@drawable/universo">
 
     <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/imageView2"
-            android:layout_gravity="right|center_vertical"/>
+            android:id="@+id/imagenCarta"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="21dp"/>
 
-    <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_gravity="left|center_vertical">
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Titulo "
+            android:id="@+id/tituloCarta"
+            android:layout_centerVertical="true"
+            android:textSize="35dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentLeft="true"
+            android:textAlignment="center"
+            android:textColor="#ffffff"/>
 
-        <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/imageView"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="29dp"
-                />
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Descripcion"
+            android:id="@+id/descripcionCarta"
+            android:layout_below="@+id/tituloCarta"
+            android:layout_marginTop="17dp"
+            android:textSize="35dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentLeft="true"
+            android:textColor="#ffffff"/>
 
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Titulo carta"
-                android:id="@+id/textView"
-                android:textSize="35dp"
-                android:layout_centerVertical="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentRight="true"
-                android:textAlignment="center"/>
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pujas"
+            android:id="@+id/pujasCarta"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:textSize="35dp"
+            android:layout_toLeftOf="@+id/imagenCarta"
+            android:textColor="#ffffff"/>
 
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Descripción carta"
-                android:id="@+id/textView2"
-                android:layout_below="@+id/textView"
-                android:layout_marginTop="23dp"
-                android:layout_alignRight="@+id/textView"
-                android:layout_alignLeft="@+id/textView"
-                android:textSize="25dp"/>
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Precio"
+            android:id="@+id/precioCarta"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:textSize="30dp"
+            android:layout_toRightOf="@+id/pujasCarta"
+            android:layout_alignTop="@+id/pujasCarta"
+            android:textColor="#ffffff"/>
 
-    </RelativeLayout>
-</LinearLayout>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pujas"
+            android:id="@+id/tituloPujas"
+            android:textSize="20dp"
+            android:textColor="#ffffff"
+            android:layout_above="@+id/pujasCarta"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="22dp"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Precio"
+            android:id="@+id/tituloPrecio"
+            android:textSize="20dp"
+            android:textColor="#ffffff"
+            android:layout_above="@+id/precioCarta"
+            android:layout_toRightOf="@+id/imagenCarta"/>
+</RelativeLayout>

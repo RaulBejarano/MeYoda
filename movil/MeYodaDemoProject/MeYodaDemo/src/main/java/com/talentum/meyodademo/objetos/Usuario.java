@@ -13,7 +13,7 @@ public class Usuario {
     private String nombre ;
     private String apellidos ;
     private String email ;
-    private String clave ;
+    private String pss ;
 
 
 
@@ -49,12 +49,12 @@ public class Usuario {
         this.email = email;
     }
 
-    public String getClave() {
-        return clave;
+    public String getPss() {
+        return pss;
     }
 
-    public void setClave(String clave) {
-        this.clave = clave;
+    public void setPss(String clave) {
+        this.pss = pss;
     }
 
 
