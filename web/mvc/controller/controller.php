@@ -43,11 +43,15 @@
 			MD5('".$_GET['contrasena']."'),
 			)";
 		
-			$result = lanzarQuery($linkbd, $sql);
-			if($result) {
-				echo "true"	;
-			} else {
+			
+			$result = $linkbd->query($sql);
+			
+			if ($linkbd->affected_rows == 1) {
+				echo "true"
+				exit;
+			}else{
 				echo "false";
+				exit;
 			}						
 		} else {
 			echo "false";
