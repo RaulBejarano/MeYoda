@@ -52,14 +52,19 @@
 	<!--Variables php    -->
 	<?php
 <<<<<<< HEAD
+<<<<<<< HEAD
 	$linkbd=mysql_connect("mysql.manu.juanlu.is","talentum", "hypernova"); //Conexion BD
 =======
 	$linkbd=mysqli("mysql.manu.juanlu.is","talentum", "hypernova"); //Conexion BD
 >>>>>>> 1ae3ea63072d139ab31376cbf79c8e8fbb053c71
+=======
+	$linkbd=mysql_connect("mysql.manu.juanlu.is","talentum", "hypernova"); //Conexion BD
+>>>>>>> 82dd502c90d0b40e51e8345d2922c3cb3c39cef1
 	$linkbd1=mysql_select_db("meyodadb");
 	
 	?>
 	
+<<<<<<< HEAD
 <<<<<<< HEAD
 
                   <?php
@@ -90,31 +95,37 @@
 
                 <div class="widget-content">
                   <div class="padd">
+=======
+>>>>>>> 82dd502c90d0b40e51e8345d2922c3cb3c39cef1
 
-                    <!-- Visitors, pageview, bounce rate, etc., Sparklines plugin used -->
-                    <ul class="current-status">
-                      <li>
-                      		<a href=* > <img src="http://www.wizards.com/global/images/swtcg_expansion_aotc_famous1LargePic_en.jpg" height="160" width="180"/></a> 
-                      </li>
-                      <li>
-                        Precio estimado: 	
-                      	<br>
-                        Demandas: 
-                      </li> 		                    
-                    </ul>
+                  <?php
+                    $resultado = mysql_query("select nombre from Carta", $linkbd)
+                      or die("Error, la consulta especificada no se ha llevado a cabo con éxito");
 
-                  </div>
-                </div>
+                    $descripcion = mysql_query("select descripcion from Carta", $linkbd)
+                      or die("Error, la consulta de la descripcion no se ha llevado a cabo con éxito");
 
+<<<<<<< HEAD
               </div>
               
 	</div>
 		<div class="span4">
 >>>>>>> 1ae3ea63072d139ab31376cbf79c8e8fbb053c71
+=======
+                    $url = mysql_query("select url from Carta",$linkbd)
+                      or die("Error, la consulta de la url no se ha llevado a cabo con éxito");
+                    
+                
+                
+                   while($fila = mysql_fetch_array($resultado)){
+                   echo ' 
+  <div class="span4">
+>>>>>>> 82dd502c90d0b40e51e8345d2922c3cb3c39cef1
 
               <div class="widget wblack5">
 
                 <div class="widget-head">
+<<<<<<< HEAD
 <<<<<<< HEAD
                   <div class="pull-left">';
 
@@ -151,12 +162,22 @@
               
 	</div>
 	<div class="span4">
+=======
+                  <div class="pull-left">';
+>>>>>>> 82dd502c90d0b40e51e8345d2922c3cb3c39cef1
 
-              <div class="widget wblack5">
+                      echo $fila['nombre'] ;
+                    
+                
+                       echo'                  </div>
 
+<<<<<<< HEAD
                 <div class="widget-head">
                   <div class="pull-left">Yoda TodoPoderoso</div>
 >>>>>>> 1ae3ea63072d139ab31376cbf79c8e8fbb053c71
+=======
+               
+>>>>>>> 82dd502c90d0b40e51e8345d2922c3cb3c39cef1
                   <div class="clearfix"></div>
                 </div>             
 
@@ -167,11 +188,15 @@
                     <ul class="current-status">
                       <li>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 82dd502c90d0b40e51e8345d2922c3cb3c39cef1
                           <a href=* > <img src="';
 
                           $url1 = mysql_fetch_array($url);
                           echo $url1['url'];
                           echo '" height="160" width="180"/></a> 
+<<<<<<< HEAD
                       </li>
                       <li>
                         Descripcion:' ;
@@ -184,13 +209,23 @@
                       </li>                         
 =======
                       		<a href=* > <img src="http://1.bp.blogspot.com/-BhVtkyOUk4Y/T1DcLefgqMI/AAAAAAAAHYI/DIYnLnjuxAg/s320/sw1.jpg" height="160" width="180"/></a> 
+=======
+>>>>>>> 82dd502c90d0b40e51e8345d2922c3cb3c39cef1
                       </li>
                       <li>
-                        Precio estimado: 	
-                      	<br>
+                        Descripcion:' ;
+                        $descrip = mysql_fetch_array($descripcion);
+                        echo $descrip['descripcion'];
+
+                        echo '  
+                        <br>
                         Demandas: 
+<<<<<<< HEAD
                       </li> 		                    
 >>>>>>> 1ae3ea63072d139ab31376cbf79c8e8fbb053c71
+=======
+                      </li>                         
+>>>>>>> 82dd502c90d0b40e51e8345d2922c3cb3c39cef1
                     </ul>
 
                   </div>
@@ -198,6 +233,7 @@
 
               </div>
               
+<<<<<<< HEAD
 <<<<<<< HEAD
             </div>';
           }
@@ -237,6 +273,13 @@
               
 	</div>
 >>>>>>> 1ae3ea63072d139ab31376cbf79c8e8fbb053c71
+=======
+            </div>';
+          }
+                  ?>
+
+		
+>>>>>>> 82dd502c90d0b40e51e8345d2922c3cb3c39cef1
 
 
 
