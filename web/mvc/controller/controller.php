@@ -73,16 +73,17 @@
 			while($row = mysqli_fetch_array($result)){
 				$venta = new Venta();
 				$venta->id=$row['id'];
+				
 				$venta->carta = new Carta();
+				$venta->carta->id = $row['idCarta'];
+				$venta->carta->nombre = $row['nombre'];
+				$venta->carta->descripcion = $row['descripcion'];
+				$venta->carta->url = $row['url'];
 				
-				
-				array_push($ventas,$venta);
-				
-				
-				$row['id']
+				array_push($ventas, $venta);				
 			}
 			
-			
+			echo json_encode($ventas);
 		}			
 	}
 
