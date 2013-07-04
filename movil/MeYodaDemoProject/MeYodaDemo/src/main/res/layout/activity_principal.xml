@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
-            android:hint="Correo Electrónico"
+            android:hint="Email"
             android:gravity="center"
             android:ems="10"
             android:id="@+id/email"
@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:ems="10"
-            android:hint="Password"
+            android:hint="Contraseña"
             android:gravity="center"
             android:id="@+id/contrasena"
             android:background="#4a4a4a"
@@ -66,7 +66,7 @@
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Registrar"
+            android:text="Registrate"
             android:id="@+id/botonRegistrar"
             android:layout_alignTop="@+id/botonEntrar"
             android:layout_alignLeft="@+id/imagenLogoYoda"/>

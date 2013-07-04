@@ -12,7 +12,7 @@
             android:id="@+id/imagenCarta"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="21dp"/>
+            />
 
     <TextView
             android:layout_width="wrap_content"
@@ -36,7 +36,8 @@
             android:textSize="35dp"
             android:layout_alignParentRight="true"
             android:layout_alignParentLeft="true"
-            android:textColor="#ffffff"/>
+            android:textColor="#ffffff"
+            android:layout_above="@+id/tituloPujas"/>
 
     <Button
             android:layout_width="wrap_content"
@@ -68,9 +69,10 @@
             android:id="@+id/tituloPujas"
             android:textSize="20dp"
             android:textColor="#ffffff"
+            android:layout_marginLeft="70dp"
             android:layout_above="@+id/pujasCarta"
             android:layout_alignParentLeft="true"
-            android:layout_marginLeft="22dp"/>
+            android:layout_marginBottom="5dp"/>
 
     <TextView
             android:layout_width="wrap_content"
@@ -80,5 +82,8 @@
             android:textSize="20dp"
             android:textColor="#ffffff"
             android:layout_above="@+id/precioCarta"
-            android:layout_toRightOf="@+id/imagenCarta"/>
+            android:layout_toRightOf="@+id/imagenCarta"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="60dp"/>
+
 </RelativeLayout>
