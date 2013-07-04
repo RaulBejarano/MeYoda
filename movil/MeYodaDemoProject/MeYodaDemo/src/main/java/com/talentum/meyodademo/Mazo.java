@@ -72,11 +72,11 @@ public class Mazo extends Fragment {
             super.onPostExecute(aBoolean);
             progress.dismiss();
             if(aBoolean){
-                Toast.makeText(getApplicationContext(), "Usuario registrado ha sido", Toast.LENGTH_LONG).show();
-                Registro.this.finish(); // kill activity si el login ha sido correcto
+               // Toast.makeText(getApplicationContext(), "Usuario registrado ha sido", Toast.LENGTH_LONG).show();
+                //Registro.this.finish(); // kill activity si el login ha sido correcto
             }
             else{
-                Toast.makeText(getApplicationContext(), "Datos incorrectos introducido tu has", Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), "Datos incorrectos introducido tu has", Toast.LENGTH_LONG).show();
             }
         }
 
