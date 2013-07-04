@@ -28,9 +28,9 @@
 		if($linkbd->select_db("meyodadb")){
 			$sql="INSERT INTO Usuario (nombre, apellidos, email, contrasena) VALUES (
 			'".$_GET['nombre']."',
-			'".$GET['apellidos']."',
-			'".$GET['email']."',
-			AES_ENCRYPT('".$GET['contrasena']."', id),
+			'".$_GET['apellidos']."',
+			'".$_GET['email']."',
+			AES_ENCRYPT('".$_GET['contrasena']."', id),
 			)";
 		
 			$result = mysqli_query(&linkbd, $sql);
