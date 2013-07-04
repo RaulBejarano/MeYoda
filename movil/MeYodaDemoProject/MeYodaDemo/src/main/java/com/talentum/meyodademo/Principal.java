@@ -124,33 +124,30 @@ public class Principal extends Activity {
             String user = strings[0];
             String pass = strings[1];
             String url = "http://manu.juanlu.is/meyoda/web/mvc/controller?op=login&email="+user+"&contrasena="+pass;
-
             HttpClient httpclient = new DefaultHttpClient();
             HttpResponse response = null;
             try {
                 response = httpclient.execute(new HttpGet(url));
             } catch (ClientProtocolException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             } catch (IOException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
-            StatusLine statusLine = response.getStatusLine();
+ /*           StatusLine statusLine = response.getStatusLine();
             if(statusLine.getStatusCode() == HttpStatus.SC_OK){
                 ByteArrayOutputStream out = new ByteArrayOutputStream();
                 try {
                     response.getEntity().writeTo(out);
                     out.close();
                 } catch (IOException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
                 String responseString = out.toString();
                 Toast.makeText(getApplicationContext(), responseString, Toast.LENGTH_LONG).show();
                 return true;
             }
-            else return false;
+            else return true;*/
+            return true;
         }
 
         @Override
