@@ -16,16 +16,16 @@ class Carta {
 
 class Venta {
  public $id;
- public $idCarta;
- public $idUsuario;
+ public $carta;
+ public $usuario;
  public $precioDeseado;
  public $aprobada;
 }
 
 class Puja {
  public $id;
- public $idCarta;
- public $idVenta;
+ public $carta;
+ public $venta;
  public $precioPuja;
 }
 

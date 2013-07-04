@@ -60,8 +60,31 @@
 		echo "false";
 		exit;
 		
-	} else if ($op = ""){
-		
+	} else if ($op = "misVentas"){
+		if (isset($_GET["id"])){
+			
+			$sql="SELECT V.*, C.* FROM Venta V, Carta C WHERE V.idCarta=C.id AND V.idUsuario = ".$_GET['id'];
+			$result = $linkbd->query($sql);
+			
+			// id, idUsuario, idCarta, valordeseado, aprobada, vendida, pago_enviado, nombre, descripcion, url
+			
+			$venta ;
+			$ventas = array();
+			while($row = mysqli_fetch_array($result)){
+				$venta = new Venta();
+				$venta->id=$row['id'];
+				
+				$venta->carta = new Carta();
+				$venta->carta->id = $row['idCarta'];
+				$venta->carta->nombre = $row['nombre'];
+				$venta->carta->descripcion = $row['descripcion'];
+				$venta->carta->url = $row['url'];
+				
+				array_push($ventas, $venta);				
+			}
+			
+			echo json_encode($ventas);
+		}			
 	}
 
 
