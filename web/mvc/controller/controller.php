@@ -53,9 +53,9 @@
 				echo "false";
 				exit;
 			}						
-		} else {
-			echo "false";
 		}
+		
+		echo "false";
 	
 	} else if ($op = ""){
 		
