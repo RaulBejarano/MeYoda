@@ -52,7 +52,8 @@
 			}else{
 				echo "false";
 			
-			}						
+			}	
+			exit;
 		}
 		
 		echo "false";
