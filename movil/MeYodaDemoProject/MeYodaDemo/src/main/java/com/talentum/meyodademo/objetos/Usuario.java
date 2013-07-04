@@ -13,7 +13,6 @@ public class Usuario {
     private String nombre ;
     private String apellidos ;
     private String email ;
-    private String pss ;
 
 
 
@@ -49,13 +48,6 @@ public class Usuario {
         this.email = email;
     }
 
-    public String getPss() {
-        return pss;
-    }
-
-    public void setPss(String clave) {
-        this.pss = pss;
-    }
 
 
 
