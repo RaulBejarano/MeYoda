@@ -1,34 +1,39 @@
 <?php 
 	include '../model/model.php';
 
-	function lanzarQuery($sql){
-		$linkbd=mysqli("mysql.manu.juanlu.is","talentum","hypernova", "meyodadb");
-		if($linkbd->select_db("meyodadb")){
-			$result = mysqli_query(&linkbd, $sql);
-			return $result;
-		} else {
-			echo "[ERROR] Conexion BBDD"
-		}
+	$linkbd = new mysqli("mysql.manu.juanlu.is","talentum","hypernova", "meyodadb");
 		
-		return null;		
+	if(!$linkbd->select_db("meyodadb")){
+		
+		exit;
 	}
-	
+		
+		
 	$op = $_GET["op"];
 
 	if ($op = "login"){ //OPERACION DE LOGIN
-		$userId = "";
-		
+
 		if (isset($_GET["email"]) && isset($_GET["contrasena"])){
-			$sql="SELECT id FROM Usuario WHERE email = ".$_GET["email"]." AND contrasena = MD5(".$_GET["contrasena"].")";
-			$result = lanzarQuery($sql);
 			
-			while($row = mysqli_fetch_array($result)){ // Solo devolverá una linea porque email es clave unica
-				$userId=$row['id']
+			$sql="SELECT id FROM Usuario WHERE email = '".$_GET["email"]."' AND contrasena = MD5('".$_GET["contrasena"]."') ";
+			
+			$result = $linkbd->query($sql);
+			
+			 // Solo devolverá una linea porque email es clave unica
+			if ($linkbd->affected_rows == 1) {
+				$row = mysqli_fetch_array($result);
+				echo $row['id'];
+				exit;
+			}else{
+				// echo "FAIL: " . $linkbd->error;
+				echo "";
+				exit;
 			}
+			
+			
 		}
-					
-		echo $userId;
-				
+
+									
 	} else if ($op = "registro"){
 		if (isset($_GET["nombre"]) && isset($_GET["apellidos"]) && isset($_GET["email"]) && isset($_GET["contrasena"])){
 			$sql="INSERT INTO Usuario (nombre, apellidos, email, contrasena) VALUES (
@@ -40,12 +45,12 @@
 		
 			$result = lanzarQuery($linkbd, $sql);
 			if($result) {
-				echo "true"	
+				echo "true"	;
 			} else {
-				echo "false"
+				echo "false";
 			}						
 		} else {
-			echo "false"
+			echo "false";
 		}
 	
 	} else if ($op = ""){
