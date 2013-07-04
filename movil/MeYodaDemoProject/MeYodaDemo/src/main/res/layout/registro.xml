@@ -23,8 +23,8 @@
                 android:layout_alignLeft="@+id/campoContrasena"
                 android:layout_marginTop="25dp"
                 android:hint="Nombre"
-                android:background="#ffffff"
-                android:textColor="#000000"
+                android:background="#4a4a4a"
+                android:textColor="#fefefe"
                 />
 
         <EditText
@@ -38,8 +38,8 @@
                 android:layout_marginTop="16dp"
                 android:layout_alignRight="@+id/campoNombre"
                 android:hint="Apellidos"
-                android:background="#ffffff"
-                android:textColor="#000000"
+                android:background="#4a4a4a"
+                android:textColor="#ffffff"
                 android:textSize="25dp"/>
 
         <EditText
@@ -53,8 +53,8 @@
                 android:layout_alignLeft="@+id/campoApellidos"
                 android:layout_marginTop="21dp"
                 android:hint="Email"
-                android:background="#ffffff"
-                android:textColor="#000000"/>
+                android:background="#4a4a4a"
+                android:textColor="#fefefe"/>
 
         <EditText
                 android:layout_width="wrap_content"
@@ -66,8 +66,8 @@
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
                 android:hint="Contraseña"
-                android:background="#ffffff"
-                android:textColor="#0b0607"/>
+                android:background="#4a4a4a"
+                android:textColor="#fefefe"/>
 
         <EditText
                 android:layout_width="wrap_content"
@@ -80,8 +80,8 @@
                 android:layout_alignLeft="@+id/campoContrasena"
                 android:layout_marginTop="15dp"
                 android:hint="Confirmación"
-                android:background="#ffffff"
-                android:textColor="#060506"/>
+                android:background="#4a4a4a"
+                android:textColor="#fefefe"/>
 
         <Button
                 android:layout_width="wrap_content"
