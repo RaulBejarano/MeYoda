@@ -23,7 +23,8 @@
                 android:layout_alignLeft="@+id/campoContrasena"
                 android:layout_marginTop="25dp"
                 android:hint="Nombre"
-                android:background="#ffffff"/>
+                android:background="#ffffff"
+                android:textColor="#000000"/>
 
         <EditText
                 android:layout_width="wrap_content"
@@ -36,20 +37,22 @@
                 android:layout_marginTop="16dp"
                 android:layout_alignRight="@+id/campoNombre"
                 android:hint="Apellidos"
-                android:background="#ffffff"/>
+                android:background="#ffffff"
+                android:textColor="#0000"/>
 
         <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
                 android:ems="10"
-                android:id="@+id/email"
+                android:id="@+id/campoEmail"
                 android:textSize="20dp"
                 android:layout_below="@+id/campoApellidos"
                 android:layout_alignLeft="@+id/campoApellidos"
                 android:layout_marginTop="21dp"
                 android:hint="Email"
-                android:background="#ffffff"/>
+                android:background="#ffffff"
+                android:textColor="#0000"/>
 
         <EditText
                 android:layout_width="wrap_content"
@@ -61,7 +64,8 @@
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
                 android:hint="Contraseña"
-                android:background="#ffffff"/>
+                android:background="#ffffff"
+                android:textColor="#0000"/>
 
         <EditText
                 android:layout_width="wrap_content"
@@ -74,7 +78,8 @@
                 android:layout_alignLeft="@+id/campoContrasena"
                 android:layout_marginTop="15dp"
                 android:hint="Confirmación"
-                android:background="#ffffff"/>
+                android:background="#ffffff"
+                android:textColor="#0000"/>
 
         <Button
                 android:layout_width="wrap_content"
@@ -85,6 +90,20 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="21dp"
 
-                android:background="#51ff49"/>
+                />
     </RelativeLayout>
+
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/editText"
+            android:layout_below="@+id/campoNombre"
+            android:layout_alignLeft="@+id/campoNombre"
+            android:layout_marginTop="16dp"
+            android:layout_alignRight="@+id/campoNombre"
+            android:hint="Apellidos"
+            android:background="#ffffff"
+            android:layout_gravity="right|center_vertical"/>
 </LinearLayout>
