@@ -39,7 +39,7 @@ public class Mazo extends Fragment {
     public class getCards extends AsyncTask<String,Void,Boolean>{
 
 
-        ProgressDialog progress = new ProgressDialog((Context) Registro.this);
+        ProgressDialog progress = new ProgressDialog(getActivity().getApplicationContext());
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
