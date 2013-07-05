@@ -4,12 +4,15 @@ import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.Toast;
 import com.google.gson.Gson;
 
@@ -23,6 +26,7 @@ import org.json.JSONObject;
 import java.io.InputStreamReader;
 import java.io.FileReader;
 import java.lang.reflect.Type;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,10 +35,13 @@ import java.util.List;
  */
 public class Mazo extends Fragment {
 
+    private ListView lista;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View V = inflater.inflate(R.layout.mazo, container, false);
+        lista = (ListView)V.findViewById(R.id.favlist);
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
 
         getCards cartas = new getCards();
@@ -64,30 +71,46 @@ public class Mazo extends Fragment {
             HttpRequest carta = new HttpRequest(request);
             String responseString = carta.make();
 
-            Type listtype = new TypeToken<List<Mazo>>(){}.getType();
+            Type listtype = new TypeToken<List<Venta>>(){}.getType();
 
             Gson gson = new Gson();
 
-            List<Mazo> cartas = gson.fromJson(responseString,listtype);
+            List<Venta> cartas = gson.fromJson(responseString,listtype);
 
             if(cartas.isEmpty()){
+
                 Toast.makeText(getActivity().getApplicationContext(), "Error al recibir cartas", Toast.LENGTH_LONG).show();
+
             }else{
+
                 List<RowItem> rows = new ArrayList<RowItem>();
-                Carta cartaAux = new Carta();
-                for(int i=0; i<cartas.size();i++){
+
+                for(Venta elemento:cartas){
+                    Bitmap foto;
+                        try {
+                            URL url = new URL(elemento.getCarta().getUrl());
+
+                            foto = BitmapFactory.decodeStream(url.openConnection().getInputStream());
 
 
 
+                        } catch (Exception e) {
+
+                            e.printStackTrace();
+                            foto = BitmapFactory.decodeResource(getResources(),R.drawable.meyodalogo);
+
+                            return null;
+                        }
+                    RowItem row = new RowItem(foto,elemento.getCarta().getNombre());
+                    rows.add(row);
+                    CustomListViewAdapter adapter = new CustomListViewAdapter(getActivity().getApplicationContext(),
+                            R.layout.list, rows);
+                    lista.setAdapter(adapter);
                 }
 
             }
 
-
-            if(responseString.compareTo("true") != 0) return false;
-            else {
-                return true;
-            }
+            return true;
         }
 
         @Override

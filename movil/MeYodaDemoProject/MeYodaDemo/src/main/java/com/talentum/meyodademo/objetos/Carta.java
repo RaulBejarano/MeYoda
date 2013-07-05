@@ -8,6 +8,7 @@ public class Carta {
     private int id ;
     private String nombre ;
     private String descripcion ;
+    private String url ;
 
     public int getId() {
         return id;
@@ -33,8 +34,13 @@ public class Carta {
         this.descripcion = descripcion;
     }
 
+    public String getUrl() {
+        return url;
+    }
 
-
+    public void setUrl(String url) {
+        this.url = url;
+    }
 }
 
 
