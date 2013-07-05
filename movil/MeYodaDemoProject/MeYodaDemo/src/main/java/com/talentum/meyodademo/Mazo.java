@@ -55,6 +55,7 @@ public class Mazo extends Fragment {
 
         ProgressDialog progress = new ProgressDialog((Context) Mazo.this.getActivity());
         List<RowItem> rows = new ArrayList<RowItem>();
+        List<Venta> cartas ;
 
         @Override
         protected void onPreExecute() {
@@ -76,7 +77,7 @@ public class Mazo extends Fragment {
             Type listtype = new TypeToken<List<Venta>>(){}.getType();
 
             Gson gson = new Gson();
-            List<Venta> cartas = gson.fromJson(responseString,listtype);
+            cartas = gson.fromJson(responseString,listtype);
             if(cartas.isEmpty() || cartas == null){
                 return false;
             }else{
