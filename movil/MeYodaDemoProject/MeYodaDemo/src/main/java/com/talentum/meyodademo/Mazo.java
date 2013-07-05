@@ -18,6 +18,7 @@ import com.google.gson.Gson;
 
 import com.google.gson.reflect.TypeToken;
 import com.talentum.meyodademo.objetos.Carta;
+import com.talentum.meyodademo.objetos.Usuario;
 import com.talentum.meyodademo.objetos.Venta;
 import com.talentum.meyodademo.requests.HttpRequest;
 
@@ -35,17 +36,16 @@ import java.util.List;
  */
 public class Mazo extends Fragment {
 
-    private ListView lista;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View V = inflater.inflate(R.layout.mazo, container, false);
-        lista = (ListView)V.findViewById(R.id.favlist);
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
-
+        Usuario u = new Gson().fromJson(pref.getString("userobject",""),Usuario.class);
         getCards cartas = new getCards();
-        cartas.execute(pref.getString("userid","0"));
+        cartas.execute(Integer.toString(u.getId()));
 
         return V;
     }
@@ -53,7 +53,9 @@ public class Mazo extends Fragment {
     public class getCards extends AsyncTask<String,Void,Boolean>{
 
 
-        ProgressDialog progress = new ProgressDialog((getActivity().getApplicationContext()));
+        ProgressDialog progress = new ProgressDialog((Context) Mazo.this.getActivity());
+        List<RowItem> rows = new ArrayList<RowItem>();
+
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -66,7 +68,7 @@ public class Mazo extends Fragment {
         protected Boolean doInBackground(String... strings) {
 
             String id = strings[0];
-            String request = "op=misventas&id="+id;
+            String request = "op=misVentas&id="+id;
 
             HttpRequest carta = new HttpRequest(request);
             String responseString = carta.make();
@@ -74,26 +76,15 @@ public class Mazo extends Fragment {
             Type listtype = new TypeToken<List<Venta>>(){}.getType();
 
             Gson gson = new Gson();
-
             List<Venta> cartas = gson.fromJson(responseString,listtype);
-
-            if(cartas.isEmpty()){
-
-                Toast.makeText(getActivity().getApplicationContext(), "Error al recibir cartas", Toast.LENGTH_LONG).show();
-
+            if(cartas.isEmpty() || cartas == null){
+                return false;
             }else{
-
-                List<RowItem> rows = new ArrayList<RowItem>();
-
                 for(Venta elemento:cartas){
                     Bitmap foto;
                         try {
                             URL url = new URL(elemento.getCarta().getUrl());
-
                             foto = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-
-
-
                         } catch (Exception e) {
 
                             e.printStackTrace();
@@ -101,11 +92,9 @@ public class Mazo extends Fragment {
 
                             return null;
                         }
-                    RowItem row = new RowItem(foto,elemento.getCarta().getNombre());
+                    RowItem row = new RowItem(foto,elemento.getCarta().getNombre()+"\n"+elemento.getPrecioDeseado()+"€");
                     rows.add(row);
-                    CustomListViewAdapter adapter = new CustomListViewAdapter(getActivity().getApplicationContext(),
-                            R.layout.list, rows);
-                    lista.setAdapter(adapter);
+
                 }
 
             }
@@ -118,10 +107,12 @@ public class Mazo extends Fragment {
             super.onPostExecute(aBoolean);
             progress.dismiss();
             if(aBoolean){
-                Toast.makeText(getActivity().getApplicationContext(), "Usuario registrado ha sido", Toast.LENGTH_LONG).show();
+                CustomListViewAdapter adapter = new CustomListViewAdapter((Context) Mazo.this.getActivity(),
+                        R.layout.list, rows);
+                ((ListView) Mazo.this.getView().findViewById(R.id.favlist)).setAdapter(adapter);
             }
             else{
-                Toast.makeText(getActivity().getApplicationContext(), "Datos incorrectos introducido tu has", Toast.LENGTH_LONG).show();
+                Toast.makeText(Mazo.this.getActivity(), "Error al recibir cartas", Toast.LENGTH_LONG).show();
             }
         }
     }
