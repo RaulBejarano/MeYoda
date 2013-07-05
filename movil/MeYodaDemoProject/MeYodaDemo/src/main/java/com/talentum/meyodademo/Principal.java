@@ -132,7 +132,7 @@ public class Principal extends Activity {
                 SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                 SharedPreferences.Editor editor = pref.edit();
                 editor.putBoolean("sesion", true);
-                editor.putString("userid", responseString);
+                editor.putString("userobject", responseString);
                 editor.commit();
                 return true;
             }

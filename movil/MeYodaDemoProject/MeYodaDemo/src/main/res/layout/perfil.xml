@@ -43,11 +43,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Número de ventas"
-            android:id="@+id/nventas"
+            android:id="@+id/textv"
             android:textColor="#fefefe"
             android:textSize="35dp"
-            android:layout_marginTop="40dp"
-            android:layout_below="@+id/textView"
+            android:layout_below="@+id/progresopujas"
             android:layout_alignParentLeft="true"/>
 
     <TextView
@@ -71,14 +70,44 @@
             android:layout_alignTop="@+id/textView"
             android:layout_alignParentRight="true"/>
 
+    <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/progresopujas"
+            android:indeterminate="false"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/textView"
+            android:layout_alignParentRight="true"/>
+
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="100"
-            android:id="@+id/textView2"
+            android:id="@+id/nventas"
             android:textColor="#fefefe"
             android:textSize="35dp"
-            android:layout_alignTop="@+id/nventas"
+            android:layout_alignTop="@+id/textv"
             android:layout_alignLeft="@+id/npujas"/>
+
+    <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/progresoventas"
+            android:indeterminate="false"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/textv"
+            android:layout_alignParentRight="true"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tipo de Perfil"
+            android:id="@+id/tipodeperfil"
+            android:textColor="#fefefe"
+            android:textSize="35dp"
+            android:layout_below="@+id/progresoventas"
+            android:layout_centerHorizontal="true"/>
 
 </RelativeLayout>
