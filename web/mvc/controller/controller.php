@@ -134,12 +134,22 @@
 			$puja ;
 			$pujas = array();
 			while($row = mysqli_fetch_array($result)){
+				$puja = new Puja ();
+				$puja->id = $row['id'];
+				$puja->idUsuario = $row['idUsuario'];
+				$puja->idVenta = $row['idVenta'];
+				$puja->preciopuja = $row['preciopuja'];
 				
+				$puja->carta = new Carta();
+				$puja->carta->id = $row['idCarta'];
+				$puja->carta->nombre = $row['nombre'];
+				$puja->carta->descripcion = $row['descripcion'];
+				$puja->carta->url = $row['url'];
 				
-				array_push($ventas, $venta);				
+				array_push($pujas, $puja);				
 			}
 			
-			echo json_encode($ventas);
+			echo json_encode($pujas);
 		}			
 	}
 

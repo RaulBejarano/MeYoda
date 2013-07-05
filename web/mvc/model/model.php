@@ -25,8 +25,9 @@ class Venta {
 
 class Puja {
  public $id;
+ public $idUsuario
+ public $idVenta;
  public $carta;
- public $venta;
  public $precioPuja;
 }
 
