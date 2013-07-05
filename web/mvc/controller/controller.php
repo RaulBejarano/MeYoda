@@ -73,7 +73,7 @@
 			}
 			
 			$sql="SELECT V.*, C.nombre, C.descripcion, C.url FROM Venta V, Carta C 
-				WHERE V.idCarta=C.id AND V.idUsuario = ".$_GET['id']." WHERE ".$condicion." = ".$valor;
+				WHERE V.idCarta=C.id AND V.idUsuario = ".$_GET['id']." AND ".$condicion." = ".$valor;
 			$result = $linkbd->query($sql);
 			
 			// id, idUsuario, idCarta, valordeseado, aprobada, vendida, pago_enviado, nombre, descripcion, url
@@ -102,7 +102,13 @@
 	} else if ($op == "enVenta"){
 		if (isset($_GET["id"])){
 			
-			$sql="SELECT V.*, C.* FROM Venta V, Carta C WHERE V.idCarta=C.id AND V.idUsuario != ".$_GET['id'];
+			if(isset($_GET['condicion']) && $_GET['valor']){
+				$condicion = $_GET['condicion'];
+				$valor = $_GET['valor'];
+			}
+			
+			$sql="SELECT V.*, C.* FROM Venta V, Carta C 
+				WHERE V.idCarta=C.id AND V.idUsuario != ".$_GET['id']." AND ".$condicion." = ".$valor;
 			$result = $linkbd->query($sql);
 			
 			// id, idUsuario, idCarta, valordeseado, aprobada, vendida, pago_enviado, nombre, descripcion, url
@@ -131,9 +137,14 @@
 	} else if ($op == "misPujas"){
 		if (isset($_GET["id"])){
 			
+			if(isset($_GET['condicion']) && $_GET['valor']){
+				$condicion = $_GET['condicion'];
+				$valor = $_GET['valor'];
+			}
+			
 			$sql="SELECT P.*, C.id AS `idCarta`, C.nombre, C.descripcion, C.url 
 				FROM Puja P, Venta V, Carta C 
-				WHERE P.idVenta=V.id AND V.idCarta=C.id AND P.idUsuario = ".$_GET['id'];
+				WHERE P.idVenta=V.id AND V.idCarta=C.id AND P.idUsuario = ".$_GET['id']." AND ".$condicion." = ".$valor;
 			$result = $linkbd->query($sql);
 			
 			// id, idUsuario, idCarta, valordeseado, aprobada, vendida, pago_enviado, nombre, descripcion, url
