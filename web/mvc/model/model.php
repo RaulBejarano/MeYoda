@@ -5,7 +5,6 @@ class Usuario {
  public $nombre;
  public $apellidos;
  public $email;
- public $pss;
  public $contadorVenta;
  public $contadorPuja;
 }
