@@ -27,18 +27,18 @@
 				$usuario->email=$row['email'];
 				
 				
-				$sql="SELECT COUNT(*) AS numVentas FROM Venta WHERE idUsuario = ".$usuario->$id;
+				$sql="SELECT COUNT(*) AS numVentas FROM Venta WHERE idUsuario = ".$usuario->id;
 				$result = $linkbd->query($sql);
 				$row = mysqli_fetch_array($result);
 				$usuario->contadorVenta=$row['numVentas'];
 				
-				$sql="SELECT COUNT(*) AS numPujas FROM Puja WHERE idUsuario = ".$usuario->$id;
+				$sql="SELECT COUNT(*) AS numPujas FROM Puja WHERE idUsuario = ".$usuario->id;
 				$result = $linkbd->query($sql);
 				$row = mysqli_fetch_array($result);
 				$usuario->contadorPuja=$row['numPujas'];
 			}
 			
-			echo echo json_encode($usuario);
+			echo json_encode($usuario);
 			exit;
 		}
 
@@ -131,8 +131,8 @@
 			
 			// id, idUsuario, idCarta, valordeseado, aprobada, vendida, pago_enviado, nombre, descripcion, url
 			
-			puja ;
-			pujas = array();
+			$puja ;
+			$pujas = array();
 			while($row = mysqli_fetch_array($result)){
 				
 				
