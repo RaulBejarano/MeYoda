@@ -117,11 +117,11 @@
                   <div class="clearfix"></div>
                 </div>             
 
-                <div class="widget-content">
+                <div class="widget-content"> 
                   <div class="padd">
 
-                    <!-- Visitors, pageview, bounce rate, etc., Sparklines plugin used -->
-                    <ul class="current-status">
+                   
+                   <ul class="current-status">
                       <li>
                           <form class="myForm" id="FormSubir" action="subircarta.php" method="post"> 
                              Nombre: <input type="text" name="name" /> 
@@ -134,7 +134,7 @@
                     </ul>
 
                   </div>
-                </div>
+               </div>
 
               </div>
               
@@ -155,7 +155,7 @@
     <script src="js/jquery.flot.resize.js"></script>
     <script src="js/jquery.flot.pie.js"></script>
     <script src="js/jquery.flot.stack.js"></script>
-    <script src="js/jquery.gritter.min.js"></script>
+    <!--<script src="js/jquery.gritter.min.js"></script>-->
     <script src="js/sparklines.js"></script>
     <script src="js/jquery.cleditor.min.js"></script>
     <script src="js/bootstrap-datetimepicker.min.js"></script>
