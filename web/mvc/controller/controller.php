@@ -1,22 +1,15 @@
 <?php 
 	include '../model/model.php';
-
-	$linkbd = new mysqli("mysql.manu.juanlu.is","talentum","hypernova", "meyodadb");
-		
-	if(!$linkbd->select_db("meyodadb")){
-		
+	$linkbd = new mysqli("mysql.manu.juanlu.is","talentum","hypernova", "meyodadb");		
+	if(!$linkbd->select_db("meyodadb")){		
 		exit;
 	}
 		
 		
 	$op = $_GET["op"];
-
 	if ($op == "login"){ //OPERACION DE LOGIN
-
-		if (isset($_GET["email"]) && isset($_GET["contrasena"])){
-			
+		if (isset($_GET["email"]) && isset($_GET["contrasena"])){			
 			$sql="SELECT id FROM Usuario WHERE email = '".$_GET["email"]."' AND contrasena = MD5('".$_GET["contrasena"]."') ";
-			
 			$result = $linkbd->query($sql);
 			
 			 // Solo devolverá una linea porque email es clave unica
@@ -28,14 +21,11 @@
 				// echo "FAIL: " . $linkbd->error;
 				echo "";
 				exit;
-			}
-			
-			
+			}			
 		}
 
 									
 	} else if ($op == "registro"){
-
 		if (isset($_GET["nombre"]) && isset($_GET["apellidos"]) && isset($_GET["email"]) && isset($_GET["contrasena"])){
 			$sql="INSERT INTO Usuario (nombre, apellidos, email, contrasena) VALUES (
 			'".$_GET['nombre']."',
@@ -43,16 +33,11 @@
 			'".$_GET['email']."',
 			MD5('".$_GET['contrasena']."')
 			)";
-		
-			
-
 			
 			if ($linkbd->query($sql)) {
-				echo "true";
-			
+				echo "true";			
 			}else{
-				echo "false";
-			
+				echo "false";			
 			}	
 			exit;
 		}
@@ -93,6 +78,7 @@
 		if (isset($_GET["id"])){
 			
 			$sql="SELECT V.*, C.* FROM Venta V, Carta C WHERE V.idCarta=C.id AND V.idUsuario != ".$_GET['id'];
+			echo $sql;
 			$result = $linkbd->query($sql);
 			
 			// id, idUsuario, idCarta, valordeseado, aprobada, vendida, pago_enviado, nombre, descripcion, url
@@ -118,6 +104,9 @@
 			
 			echo json_encode($ventas);
 		}			
+	} else if ($op = "misPujas"){
+		$sql = "SELECT ";
+		
 	}
 
 
