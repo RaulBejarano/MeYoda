@@ -9,6 +9,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
@@ -58,8 +60,15 @@ public class Principal extends Activity {
                     EditText contrasena= (EditText) findViewById(R.id.contrasena);
                     String textoEmail = email.getText().toString();
                     String textoContrasena = contrasena.getText().toString();
+                    //Check internet connection
+                    ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+                    NetworkInfo ni = cm.getActiveNetworkInfo();
+                    if (ni == null) {
+                        Toast.makeText(getApplicationContext(), "Conectividad a Internet tener debes", Toast.LENGTH_LONG).show();
+                        return;
+                    }
                     //Comprobamos si están todos los campos completos
-                    if ((textoEmail=="") || (textoContrasena=="")){
+                    if ((textoEmail.compareTo("")==0) || (textoContrasena.compareTo("")==0)){
                         //Toast de aviso
                         Context context = getApplicationContext();
                         CharSequence text = "Introducir tu mail y contraseña tu has";
@@ -127,7 +136,7 @@ public class Principal extends Activity {
             String request = "op=login&email="+user+"&contrasena="+pass;
             HttpRequest login = new HttpRequest(request);
             String responseString = login.make();
-            if(responseString.isEmpty()) return false;
+            if(responseString.isEmpty() || responseString.compareTo("null")==0) return false;
             else {
                 SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                 SharedPreferences.Editor editor = pref.edit();

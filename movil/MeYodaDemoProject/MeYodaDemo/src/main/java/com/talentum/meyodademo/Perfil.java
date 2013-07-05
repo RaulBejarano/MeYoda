@@ -47,7 +47,7 @@ public class Perfil extends Fragment {
         View V = inflater.inflate(R.layout.perfil, container, false);
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
         String userjson = pref.getString("userobject", "");
-        if(userjson.isEmpty()){
+        if(userjson.isEmpty() || userjson == null){
 
         }
         else{
