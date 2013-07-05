@@ -21,24 +21,24 @@
 				$row = mysqli_fetch_array($result);				
 				$usuario = new Usuario();
 				
-				$usuario->$id=$row['id'];
-				$usuario->$nombre=$row['nombre'];
-				$usuario->$apellidos=$row['apellidos'];
-				$usuario->$email=$row['email'];
-				$usuario->$pss=$row['contrasena'];
+				$usuario->id=$row['id'];
+				$usuario->nombre=$row['nombre'];
+				$usuario->apellidos=$row['apellidos'];
+				$usuario->email=$row['email'];
 				
-				$sql="SELECT COUNT(*) AS numVentas FROM Venta WHERE idUsuario = ".$usuario->$id;
+				
+				$sql="SELECT COUNT(*) AS numVentas FROM Venta WHERE idUsuario = ".$usuario->id;
 				$result = $linkbd->query($sql);
 				$row = mysqli_fetch_array($result);
-				$usuario->contadorVenta=$row['numVentas']
+				$usuario->contadorVenta=$row['numVentas'];
 				
-				$sql="SELECT COUNT(*) AS numPujas FROM Puja WHERE idUsuario = ".$usuario->$id;
+				$sql="SELECT COUNT(*) AS numPujas FROM Puja WHERE idUsuario = ".$usuario->id;
 				$result = $linkbd->query($sql);
 				$row = mysqli_fetch_array($result);
-				$usuario->contadorVenta=$row['numPujas']
+				$usuario->contadorPuja=$row['numPujas'];
 			}
 			
-			echo echo json_encode($usuario);
+			echo json_encode($usuario);
 			exit;
 		}
 
@@ -122,8 +122,25 @@
 			echo json_encode($ventas);
 		}			
 	} else if ($op == "misPujas"){
-		$sql = "SELECT ";
-		
+		if (isset($_GET["id"])){
+			
+			$sql="SELECT P.*, C.id AS `idCarta`, C.nombre, C.descripcion, C.url 
+				FROM Puja P, Venta V, Carta C 
+				WHERE P.idVenta=V.id AND V.idCarta=C.id AND P.idUsuario = ".$_GET['id'];
+			$result = $linkbd->query($sql);
+			
+			// id, idUsuario, idCarta, valordeseado, aprobada, vendida, pago_enviado, nombre, descripcion, url
+			
+			$puja ;
+			$pujas = array();
+			while($row = mysqli_fetch_array($result)){
+				
+				
+				array_push($ventas, $venta);				
+			}
+			
+			echo json_encode($ventas);
+		}			
 	}
 
 
