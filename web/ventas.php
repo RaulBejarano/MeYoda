@@ -115,8 +115,8 @@
                         echo $descrip['descripcion'];
 
                         echo '  
-                        <br>
-                        Demandas: 
+                        
+                    
                       </li>                         
                     </ul>
 
@@ -136,10 +136,10 @@
     }
     else if ($numeroFilasTotales > 8)
       {
-        $diezSiguientes = $desde + 8;
-        $diezAnteriores = $desde - 8;
-        echo "<a href = ventas.php?desde=$diezAnteriores>[8 anteriores] </a>";
-        echo "<a href = ventas.php?desde=$diezSiguientes> [8 siguientes]</a>";
+        $OchoSiguientes = $desde + 8;
+        $OchoAnteriores = $desde - 8;
+        echo "<a href = ventas.php?desde=$OchoAnteriores>[8 anteriores] </a>";
+        echo "<a href = ventas.php?desde=$OchoSiguientes> [8 siguientes]</a>";
       }
       else
       {
