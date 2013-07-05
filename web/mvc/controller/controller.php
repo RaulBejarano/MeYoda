@@ -7,21 +7,39 @@
 		
 		
 	$op = $_GET["op"];
+	
 	if ($op == "login"){ //OPERACION DE LOGIN
 		if (isset($_GET["email"]) && isset($_GET["contrasena"])){			
-			$sql="SELECT id FROM Usuario WHERE email = '".$_GET["email"]."' AND contrasena = MD5('".$_GET["contrasena"]."') ";
+			$sql="SELECT * FROM Usuario WHERE email = '".$_GET["email"]."' AND contrasena = MD5('".$_GET["contrasena"]."') ";
 			$result = $linkbd->query($sql);
 			
-			 // Solo devolverá una linea porque email es clave unica
+			
+			$usuario;
+				
+			// Solo devolverá una linea porque email es clave unica
 			if ($linkbd->affected_rows == 1) {
+				$row = mysqli_fetch_array($result);				
+				$usuario = new Usuario();
+				
+				$usuario->$id=$row['id'];
+				$usuario->$nombre=$row['nombre'];
+				$usuario->$apellidos=$row['apellidos'];
+				$usuario->$email=$row['email'];
+				$usuario->$pss=$row['contrasena'];
+				
+				$sql="SELECT COUNT(*) AS numVentas FROM Venta WHERE idUsuario = ".$usuario->$id;
+				$result = $linkbd->query($sql);
 				$row = mysqli_fetch_array($result);
-				echo $row['id'];
-				exit;
-			}else{
-				// echo "FAIL: " . $linkbd->error;
-				echo "";
-				exit;
-			}			
+				$usuario->contadorVenta=$row['numVentas']
+				
+				$sql="SELECT COUNT(*) AS numPujas FROM Puja WHERE idUsuario = ".$usuario->$id;
+				$result = $linkbd->query($sql);
+				$row = mysqli_fetch_array($result);
+				$usuario->contadorVenta=$row['numPujas']
+			}
+			
+			echo echo json_encode($usuario);
+			exit;
 		}
 
 									
@@ -45,7 +63,7 @@
 		echo "false";
 		exit;
 		
-	} else if ($op = "misVentas"){
+	} else if ($op == "misVentas"){
 		if (isset($_GET["id"])){
 			
 			$sql="SELECT V.*, C.* FROM Venta V, Carta C WHERE V.idCarta=C.id AND V.idUsuario = ".$_GET['id'];
@@ -74,11 +92,10 @@
 			
 			echo json_encode($ventas);
 		}			
-	} else if ($op = "enVenta"){
+	} else if ($op == "enVenta"){
 		if (isset($_GET["id"])){
 			
 			$sql="SELECT V.*, C.* FROM Venta V, Carta C WHERE V.idCarta=C.id AND V.idUsuario != ".$_GET['id'];
-			echo $sql;
 			$result = $linkbd->query($sql);
 			
 			// id, idUsuario, idCarta, valordeseado, aprobada, vendida, pago_enviado, nombre, descripcion, url
@@ -104,7 +121,7 @@
 			
 			echo json_encode($ventas);
 		}			
-	} else if ($op = "misPujas"){
+	} else if ($op == "misPujas"){
 		$sql = "SELECT ";
 		
 	}

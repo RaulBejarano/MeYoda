@@ -6,6 +6,8 @@ class Usuario {
  public $apellidos;
  public $email;
  public $pss;
+ public $contadorVenta;
+ public $contadorPuja;
 }
 
 class Carta {

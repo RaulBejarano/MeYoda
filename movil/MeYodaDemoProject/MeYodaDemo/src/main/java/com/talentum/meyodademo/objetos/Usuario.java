@@ -13,6 +13,8 @@ public class Usuario {
     private String nombre ;
     private String apellidos ;
     private String email ;
+    private int contadorPuja;
+    private int contadorVenta;
 
 
 
@@ -48,8 +50,19 @@ public class Usuario {
         this.email = email;
     }
 
+    public int getContadorPuja() {
+        return contadorPuja;
+    }
 
+    public void setContadorPuja(int contadorPuja) {
+        this.contadorPuja = contadorPuja;
+    }
 
+    public int getContadorVenta() {
+        return contadorVenta;
+    }
 
-
+    public void setContadorVenta(int contadorVenta) {
+        this.contadorVenta = contadorVenta;
+    }
 }
