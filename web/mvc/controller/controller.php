@@ -66,7 +66,7 @@
 	} else if ($op == "misVentas"){
 		if (isset($_GET["id"])){
 			
-			$sql="SELECT V.*, C.* FROM Venta V, Carta C WHERE V.idCarta=C.id AND V.idUsuario = ".$_GET['id'];
+			$sql="SELECT V.*, C.nombre, C.descripcion, C.url FROM Venta V, Carta C WHERE V.idCarta=C.id AND V.idUsuario = ".$_GET['id'];
 			$result = $linkbd->query($sql);
 			
 			// id, idUsuario, idCarta, valordeseado, aprobada, vendida, pago_enviado, nombre, descripcion, url
