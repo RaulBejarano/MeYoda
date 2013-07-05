@@ -64,9 +64,16 @@
 		exit;
 		
 	} else if ($op == "misVentas"){
-		if (isset($_GET["id"])){
+		if (isset($_GET['d'])){
+			$condicion=1;
+			$valor = 1;
+			if(isset($_GET['condicion']) && $_GET['valor']){
+				$condicion = $_GET['condicion'];
+				$valor = $_GET['valor'];
+			}
 			
-			$sql="SELECT V.*, C.nombre, C.descripcion, C.url FROM Venta V, Carta C WHERE V.idCarta=C.id AND V.idUsuario = ".$_GET['id'];
+			$sql="SELECT V.*, C.nombre, C.descripcion, C.url FROM Venta V, Carta C 
+				WHERE V.idCarta=C.id AND V.idUsuario = ".$_GET['id']." WHERE ".$condicion." = ".$valor;
 			$result = $linkbd->query($sql);
 			
 			// id, idUsuario, idCarta, valordeseado, aprobada, vendida, pago_enviado, nombre, descripcion, url
@@ -151,7 +158,35 @@
 			
 			echo json_encode($pujas);
 		}			
-	}
+	} else if ($op == "nuevaVenta"){
+		if (isset($_GET["idUsuario"]) && isset($_GET["idCarta"]) && isset($_GET["valordeseado"])){
+			
+			$sql="INSERT INTO Venta (idUsuario, idCarta, valordeseado) VALUES ($idUsuario, $idCarta, $valordeseado)";
+			$result = $linkbd->query($sql);
+			
+			
+			if ($linkbd->query($sql)) {
+				echo "true";			
+			}else{
+				echo "false";			
+			}	
+			exit;
+		}			
+	} else if ($op == "nuevaPuja"){
+		if (isset($_GET["idUsuario"]) && isset($_GET["idVenta"]) && isset($_GET["valordeseado"])){
+			
+			$sql="INSERT INTO Puja (idUsuario, idVenta, valorpuja) VALUES ($idUsuario, $idVenta, $valorpuja)";
+			$result = $linkbd->query($sql);
+			
+			
+			if ($linkbd->query($sql)) {
+				echo "true";			
+			}else{
+				echo "false";			
+			}	
+			exit;
+		}			
+	} 
 
 
 ?>
