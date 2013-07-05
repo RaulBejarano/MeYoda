@@ -138,7 +138,7 @@
 				$puja->id = $row['id'];
 				$puja->idUsuario = $row['idUsuario'];
 				$puja->idVenta = $row['idVenta'];
-				$puja->preciopuja = $row['preciopuja'];
+				$puja->precioPuja = $row['valorpuja'];
 				
 				$puja->carta = new Carta();
 				$puja->carta->id = $row['idCarta'];
