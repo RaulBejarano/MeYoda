@@ -72,41 +72,36 @@
 <body>
 
         <?php 
-        if( isset($_POST['loginForm']) ){
+        if(!isset($_POST['FormSubir']) ){
           $nombre=$_POST['nombre'];
           $descripcion=$_POST['descripcion'];
           $url=$_POST['url'];
           $precio=$_POST['contrasena'];
         
-
-         
-          $mysqli = new mysqli();
-          $mysqli->connect("mysql.manu.juanlu.is","talentum","hypernova","meyodadb");
+        
+        }
           else{
-
 
             if ($nombre == '') {
               echo 'No puedes dejar el nombre en blanco.';
               return;
             }
 
-            if ($url == '') {
+            else if ($url == '') {
               echo 'No puedes dejar la url en blanco.';
               return;
             }
-            if ($precio == '') {
+            else if ($precio == '') {
               echo 'No puedes dejar el precio en blanco.';
               return;
             }
-
+            else{
+              $data = json_decode(file_get_contents('http://manu.juanlu.is/controler.php?op=subirCarta&nombre='.$nombre.'&descripcion='.$descripcion.'&url='.$url.'&precio='.$precio));
+            }
                     
-                        $result = $mysqli->query("INSERT INTO Carta ('nombre','descripcion','url')VALUES($nombre,$descripcion,$url )") or die($linkbd->error);
-                        
-                        $mysqli->close();
-              
              
-              }            
-          }
+         }            
+        
         
 
          ?>
@@ -128,7 +123,7 @@
                     <!-- Visitors, pageview, bounce rate, etc., Sparklines plugin used -->
                     <ul class="current-status">
                       <li>
-                          <form class="myForm" id="loginForm" action="subircarta.php" method="post"> 
+                          <form class="myForm" id="FormSubir" action="subircarta.php" method="post"> 
                              Nombre: <input type="text" name="name" /> 
                              Descripcion: <textarea name="descripcion"></textarea> <br>
                              Url: <br><input type='text' name="url"></input>
