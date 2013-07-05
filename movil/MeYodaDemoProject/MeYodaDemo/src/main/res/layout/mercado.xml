@@ -14,7 +14,8 @@
             android:footerDividersEnabled="false"
             android:headerDividersEnabled="false"
             android:focusable="false"
-            android:layout_above="@+id/searchView"/>
+            android:layout_above="@+id/searchView"
+            />
 
     <SearchView
             android:layout_width="wrap_content"
@@ -24,6 +25,7 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:inputType="text"
+            android:queryHint="Una carta buscar puedes"
             android:layout_toLeftOf="@+id/botonBuscar"/>
 
     <Button

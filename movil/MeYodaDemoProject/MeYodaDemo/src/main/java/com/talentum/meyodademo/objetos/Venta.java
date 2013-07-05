@@ -8,7 +8,7 @@ public class Venta {
     private int id;
     private Usuario usuario;
     private Carta carta;
-    private float precioDeseado ;
+    private float valordeseado ;
     private boolean aprobada ;
 
     public int getId() {
@@ -36,11 +36,11 @@ public class Venta {
     }
 
     public float getPrecioDeseado() {
-        return precioDeseado;
+        return valordeseado;
     }
 
     public void setPrecioDeseado(float precioDeseado) {
-        this.precioDeseado = precioDeseado;
+        this.valordeseado = precioDeseado;
     }
 
     public boolean isAprobada() {

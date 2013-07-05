@@ -6,38 +6,29 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:background="@drawable/universo">
 
-    <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/imagenCarta"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            />
-
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Titulo "
+            android:text="Titulo:"
             android:id="@+id/tituloCarta"
-            android:layout_centerVertical="true"
-            android:textSize="35dp"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentLeft="true"
+            android:textSize="25dp"
             android:textAlignment="center"
-            android:textColor="#ffffff"/>
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:editable="false"
+            android:textColor="#a39"/>
 
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Descripcion"
+            android:text="Descripcion:"
             android:id="@+id/descripcionCarta"
-            android:layout_below="@+id/tituloCarta"
-            android:layout_marginTop="17dp"
-            android:textSize="35dp"
-            android:layout_alignParentRight="true"
+            android:textSize="25dp"
+            android:textColor="#a39"
             android:layout_alignParentLeft="true"
-            android:textColor="#ffffff"
-            android:layout_above="@+id/tituloPujas"/>
+            android:layout_below="@+id/titulo"
+            android:layout_alignRight="@+id/precioCarta"/>
 
     <Button
             android:layout_width="wrap_content"
@@ -47,8 +38,8 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:textSize="35dp"
-            android:layout_toLeftOf="@+id/imagenCarta"
-            android:textColor="#ffffff"/>
+            android:textColor="#ffffff"
+            android:layout_centerHorizontal="true"/>
 
     <Button
             android:layout_width="wrap_content"
@@ -82,8 +73,59 @@
             android:textSize="20dp"
             android:textColor="#ffffff"
             android:layout_above="@+id/precioCarta"
-            android:layout_toRightOf="@+id/imagenCarta"
             android:layout_marginRight="10dp"
-            android:layout_marginLeft="60dp"/>
+            android:layout_marginLeft="60dp"
+            android:layout_centerHorizontal="true"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Titulo:"
+            android:id="@+id/titulo"
+            android:textSize="35dp"
+            android:textAlignment="center"
+            android:textColor="#ffffff"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/tituloCarta"
+            android:layout_alignParentRight="true"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Descripcion:"
+            android:id="@+id/descripcion"
+            android:textSize="30dp"
+            android:textColor="#ffffff"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/descripcionCarta"
+            android:layout_alignParentRight="true"
+            android:layout_above="@+id/tituloPujas"/>
+
+    <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_above="@+id/tituloCarta"
+            android:gravity="center">
+
+        <ImageView
+                android:layout_width="200dp"
+                android:layout_height="fill_parent"
+                android:id="@+id/imageView"
+                android:layout_marginTop="10dp"
+                android:layout_centerHorizontal="true"
+                android:adjustViewBounds="true"/>
+
+        <ProgressBar
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/progressBar"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:indeterminate="false"/>
+
+    </RelativeLayout>
 
 </RelativeLayout>

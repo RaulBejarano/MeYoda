@@ -37,6 +37,7 @@ public class Mercado extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
         /*((Button) fragment.findViewById(R.id.botonBuscar)).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,6 +49,8 @@ public class Mercado extends Fragment{
         });*/
 
         View fragment = inflater.inflate(R.layout.mercado, container, false);
+        SearchView busqueda = (SearchView) getActivity().findViewById(R.id.search);
+
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
         Usuario u = new Gson().fromJson(pref.getString("userobject",""),Usuario.class);
         printMercado mercado = new printMercado();
@@ -83,25 +86,21 @@ public class Mercado extends Fragment{
             String responseString = carta.make();
 
             Type listtype = new TypeToken<List<Venta>>(){}.getType();
-
             Gson gson = new Gson();
-            cartas = gson.fromJson(responseString,listtype);
-            if(cartas.isEmpty() || cartas == null){
-                return false;
-            }else{
+            List<Venta> cartas = gson.fromJson(responseString,listtype);
+            if(cartas == null) return false;
+            else if(cartas.isEmpty()) return false;
+            else{
                 for(Venta elemento:cartas){
                     Bitmap foto;
                     try {
                         URL url = new URL(elemento.getCarta().getUrl());
                         foto = BitmapFactory.decodeStream(url.openConnection().getInputStream());
                     } catch (Exception e) {
-
                         e.printStackTrace();
                         foto = BitmapFactory.decodeResource(getResources(),R.drawable.meyodalogo);
-
-                        return null;
                     }
-                    RowItem row = new RowItem(foto,elemento.getCarta().getNombre()+"\n"+elemento.getPrecioDeseado()+"€");
+                    RowItem row = new RowItem(foto,elemento.getCarta().getNombre()+"\n"+elemento.getCarta().getDescripcion()+"\n"+elemento.getPrecioDeseado()+"€");
                     rows.add(row);
 
                 }

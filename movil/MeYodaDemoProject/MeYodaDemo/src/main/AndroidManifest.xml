@@ -45,6 +45,12 @@
                 tools:ignore="NewApi">
                 </activity>
 
+        <activity
+                android:name="com.talentum.meyodademo.MostrarCarta"
+                android:theme="@android:style/Theme.Holo.Wallpaper.NoTitleBar"
+                android:label="@string/app_name"
+                tools:ignore="NewApi">
+        </activity>
 
     </application>
 

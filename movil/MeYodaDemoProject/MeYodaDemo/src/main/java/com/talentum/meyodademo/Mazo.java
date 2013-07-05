@@ -3,6 +3,7 @@ package com.talentum.meyodademo;
 import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -12,7 +13,9 @@ import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.google.gson.Gson;
 
@@ -34,10 +37,9 @@ import java.util.List;
 /**
  * Created by idiez on 3/07/13.
  */
-public class Mazo extends Fragment {
+public class Mazo extends Fragment implements AdapterView.OnItemClickListener{
 
-
-
+    private List<Venta> cartas;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -46,8 +48,23 @@ public class Mazo extends Fragment {
         Usuario u = new Gson().fromJson(pref.getString("userobject",""),Usuario.class);
         getCards cartas = new getCards();
         cartas.execute(Integer.toString(u.getId()));
-
         return V;
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+
+        if(arg2 == -1) return;
+        Venta v = cartas.get(arg2);
+        String venta = new Gson().toJson(v);
+        Intent i = new Intent(this.getActivity().getApplicationContext(),MostrarCarta.class).putExtra("carta","V;"+venta);
+        startActivity(i);
+        /* dummy I think
+        final View argview = arg1;
+        TextView textView = (TextView)arg1.findViewById(R.id.text1);
+        final Context ctx = getActivity().getApplicationContext();
+        final String[] t = (textView.getText().toString()).split("\n");
+        */
     }
 
     public class getCards extends AsyncTask<String,Void,Boolean>{
@@ -55,7 +72,6 @@ public class Mazo extends Fragment {
 
         ProgressDialog progress = new ProgressDialog((Context) Mazo.this.getActivity());
         List<RowItem> rows = new ArrayList<RowItem>();
-        List<Venta> cartas ;
 
         @Override
         protected void onPreExecute() {
@@ -93,11 +109,9 @@ public class Mazo extends Fragment {
 
                             return null;
                         }
-                    RowItem row = new RowItem(foto,elemento.getCarta().getNombre()+"\n"+elemento.getPrecioDeseado()+"€");
+                    RowItem row = new RowItem(foto,elemento.getCarta().getNombre()+"\n"+elemento.getCarta().getDescripcion()+"\n"+elemento.getPrecioDeseado()+"€");
                     rows.add(row);
-
                 }
-
             }
 
             return true;
@@ -111,6 +125,7 @@ public class Mazo extends Fragment {
                 CustomListViewAdapter adapter = new CustomListViewAdapter((Context) Mazo.this.getActivity(),
                         R.layout.list, rows);
                 ((ListView) Mazo.this.getView().findViewById(R.id.favlist)).setAdapter(adapter);
+                ((ListView) Mazo.this.getView().findViewById(R.id.favlist)).setOnItemClickListener(Mazo.this);;
             }
             else{
                 Toast.makeText(Mazo.this.getActivity(), "Error al recibir cartas", Toast.LENGTH_LONG).show();
