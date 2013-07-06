@@ -23,11 +23,11 @@ public class Navigation extends Activity {
         actionBar.setDisplayShowTitleEnabled(false);
         actionBar.setDisplayShowHomeEnabled(false);
         Perfil perfil = new Perfil();
-        Favoritos fav = new Favoritos();
+        Pujas fav = new Pujas();
         Mazo mazo = new Mazo();
         Mercado mercado = new Mercado();
         Tab perfil_tab = actionBar.newTab().setText("Perfil").setTabListener(new CustomTabListener(perfil));
-        Tab fav_tab = actionBar.newTab().setText("FAV").setTabListener(new CustomTabListener(fav));
+        Tab fav_tab = actionBar.newTab().setText("Pujas").setTabListener(new CustomTabListener(fav));
         Tab mazo_tab = actionBar.newTab().setText("Mazo").setTabListener(new CustomTabListener(mazo));
         Tab mercado_tab = actionBar.newTab().setText("Mercado").setTabListener(new CustomTabListener(mercado));
         actionBar.addTab(mercado_tab);
