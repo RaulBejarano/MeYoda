@@ -64,16 +64,16 @@
 		exit;
 		
 	} else if ($op == "misVentas"){
-		if (isset($_GET['d'])){
-			$condicion=1;
-			$valor = 1;
-			if(isset($_GET['condicion']) && $_GET['valor']){
-				$condicion = $_GET['condicion'];
-				$valor = $_GET['valor'];
+		if (isset($_GET['id'])){
+			$condicion='1 = 1';
+			
+			if(isset($_GET['condicion'])){
+				$condicion = $_GET['condicion'];				
 			}
 			
 			$sql="SELECT V.*, C.nombre, C.descripcion, C.url FROM Venta V, Carta C 
-				WHERE V.idCarta=C.id AND V.idUsuario = ".$_GET['id']." AND ".$condicion." = ".$valor;
+				WHERE V.idCarta=C.id AND V.idUsuario = ".$_GET['id']." AND ".$condicion;
+			
 			$result = $linkbd->query($sql);
 			
 			// id, idUsuario, idCarta, valordeseado, aprobada, vendida, pago_enviado, nombre, descripcion, url
@@ -102,13 +102,14 @@
 	} else if ($op == "enVenta"){
 		if (isset($_GET["id"])){
 			
-			if(isset($_GET['condicion']) && $_GET['valor']){
-				$condicion = $_GET['condicion'];
-				$valor = $_GET['valor'];
+			$condicion='1 = 1';
+			
+			if(isset($_GET['condicion'])){
+				$condicion = $_GET['condicion'];				
 			}
 			
 			$sql="SELECT V.*, C.* FROM Venta V, Carta C 
-				WHERE V.idCarta=C.id AND V.idUsuario != ".$_GET['id']." AND ".$condicion." = ".$valor;
+				WHERE V.idCarta=C.id AND V.idUsuario != ".$_GET['id']." AND ".$condicion;
 			$result = $linkbd->query($sql);
 			
 			// id, idUsuario, idCarta, valordeseado, aprobada, vendida, pago_enviado, nombre, descripcion, url
@@ -137,14 +138,15 @@
 	} else if ($op == "misPujas"){
 		if (isset($_GET["id"])){
 			
-			if(isset($_GET['condicion']) && $_GET['valor']){
-				$condicion = $_GET['condicion'];
-				$valor = $_GET['valor'];
+			$condicion='1 = 1';
+			
+			if(isset($_GET['condicion'])){
+				$condicion = $_GET['condicion'];				
 			}
 			
 			$sql="SELECT P.*, C.id AS `idCarta`, C.nombre, C.descripcion, C.url 
 				FROM Puja P, Venta V, Carta C 
-				WHERE P.idVenta=V.id AND V.idCarta=C.id AND P.idUsuario = ".$_GET['id']." AND ".$condicion." = ".$valor;
+				WHERE P.idVenta=V.id AND V.idCarta=C.id AND P.idUsuario = ".$_GET['id']." AND ".$condicion;
 			$result = $linkbd->query($sql);
 			
 			// id, idUsuario, idCarta, valordeseado, aprobada, vendida, pago_enviado, nombre, descripcion, url
@@ -171,11 +173,8 @@
 		}			
 	} else if ($op == "nuevaVenta"){
 		if (isset($_GET["idUsuario"]) && isset($_GET["idCarta"]) && isset($_GET["valordeseado"])){
-			
-			$sql="INSERT INTO Venta (idUsuario, idCarta, valordeseado) VALUES ($idUsuario, $idCarta, $valordeseado)";
-			echo $sql;
-			$result = $linkbd->query($sql);
-			
+
+			$sql='INSERT INTO Venta (idUsuario, idCarta, valordeseado) VALUES ('.$_GET["idUsuario"].', '.$_GET["idCarta"].', '.$_GET["valordeseado"].')';
 			
 			if ($linkbd->query($sql)) {
 				echo "true";			
@@ -185,12 +184,9 @@
 			exit;
 		}			
 	} else if ($op == "nuevaPuja"){
-		if (isset($_GET["idUsuario"]) && isset($_GET["idVenta"]) && isset($_GET["valordeseado"])){
+		if (isset($_GET["idUsuario"]) && isset($_GET["idVenta"]) && isset($_GET["valorpuja"])){
 			
-			$sql="INSERT INTO Puja (idUsuario, idVenta, valorpuja) VALUES ($idUsuario, $idVenta, $valorpuja)";
-			echo $sql;
-			$result = $linkbd->query($sql);
-			
+			$sql="INSERT INTO Puja (idUsuario, idVenta, valorpuja) VALUES (".$_GET["idUsuario"].", ".$_GET["idVenta"].", ". $_GET["valorpuja"].")";
 			
 			if ($linkbd->query($sql)) {
 				echo "true";			
@@ -201,12 +197,18 @@
 		}			
 	} else if ($op == "getCartas"){
 			
-			$sql="SELECT * FROM Carta";
+		$condicion='1 = 1';
+			
+		if(isset($_GET['condicion'])){
+			$condicion = $_GET['condicion'];
+		}
+		
+			$sql="SELECT * FROM Carta WHERE ".$condicion;
 			$result = $linkbd->query($sql);
 			
 			
-			$puja ;
-			$pujas = array();
+			$carta ;
+			$cartas = array();
 			while($row = mysqli_fetch_array($result)){
 				$carta = new Carta ();
 				$carta->id=$row['id'];
@@ -214,10 +216,10 @@
 				$carta->descripcion=$row['descripcion'];
 				$carta->url=$row['url'];
 				
-				array_push($pujas, $puja);				
+				array_push($cartas, $carta);				
 			}
 			
-			echo json_encode($pujas);
+			echo json_encode($cartas);
 					
 	} 
 
