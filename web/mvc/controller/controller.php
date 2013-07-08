@@ -64,20 +64,16 @@
 		exit;
 		
 	} else if ($op == "misVentas"){
-		if (isset($_GET['id'])){
+		if (isset($_GET['d'])){
 			$condicion=1;
 			$valor = 1;
 			if(isset($_GET['condicion']) && $_GET['valor']){
-				$condicion 	= $_GET['condicion'];
-				$valor 		= $_GET['valor'];
-				$sql="SELECT V.*, C.nombre, C.descripcion, C.url FROM Venta V, Carta C 
-					WHERE V.idCarta=C.id AND V.idUsuario = ".$_GET['id']." AND ".$condicion." = ".$valor;				
-			}else{
-				$sql="SELECT V.*, C.nombre, C.descripcion, C.url FROM Venta V, Carta C 
-					WHERE V.idCarta=C.id AND V.idUsuario = ".$_GET['id'];				
+				$condicion = $_GET['condicion'];
+				$valor = $_GET['valor'];
 			}
 			
-
+			$sql="SELECT V.*, C.nombre, C.descripcion, C.url FROM Venta V, Carta C 
+				WHERE V.idCarta=C.id AND V.idUsuario = ".$_GET['id']." AND ".$condicion." = ".$valor;
 			$result = $linkbd->query($sql);
 			
 			// id, idUsuario, idCarta, valordeseado, aprobada, vendida, pago_enviado, nombre, descripcion, url
@@ -109,41 +105,32 @@
 			if(isset($_GET['condicion']) && $_GET['valor']){
 				$condicion = $_GET['condicion'];
 				$valor = $_GET['valor'];
-				$sql = "SELECT V.*, C.* FROM Venta V, Carta C 
-					WHERE V.idCarta=C.id AND V.idUsuario != ".$_GET['id']." AND ".$condicion." = ".$valor;					
-			}else{
-				$sql = "SELECT V.*, C.* FROM Venta V, Carta C 
-					WHERE V.idCarta=C.id AND V.idUsuario != ".$_GET['id'];				
 			}
-
-
 			
-			
-			
+			$sql="SELECT V.*, C.* FROM Venta V, Carta C 
+				WHERE V.idCarta=C.id AND V.idUsuario != ".$_GET['id']." AND ".$condicion." = ".$valor;
 			$result = $linkbd->query($sql);
 			
 			// id, idUsuario, idCarta, valordeseado, aprobada, vendida, pago_enviado, nombre, descripcion, url
 			
 			$venta ;
 			$ventas = array();
-			if ($result) {
-				while($row = mysqli_fetch_array($result)){
-					$venta = new Venta();
-					$venta->id = $row['id'];
-					$venta->valordeseado = $row['valordeseado'];
-					$venta->aprobada = $row['aprobada'];
-					$venta->vendida = $row['vendida'];
-					$venta->pago_enviado['pago_enviado'];
+			while($row = mysqli_fetch_array($result)){
+				$venta = new Venta();
+				$venta->id = $row['id'];
+				$venta->valordeseado = $row['valordeseado'];
+				$venta->aprobada = $row['aprobada'];
+				$venta->vendida = $row['vendida'];
+				$venta->pago_enviado['pago_enviado'];
+			
+				$venta->carta = new Carta();
+				$venta->carta->id = $row['idCarta'];
+				$venta->carta->nombre = $row['nombre'];
+				$venta->carta->descripcion = $row['descripcion'];
+				$venta->carta->url = $row['url'];
 				
-					$venta->carta = new Carta();
-					$venta->carta->id = $row['idCarta'];
-					$venta->carta->nombre = $row['nombre'];
-					$venta->carta->descripcion = $row['descripcion'];
-					$venta->carta->url = $row['url'];
-					
-					array_push($ventas, $venta);				
-				}
-			}	
+				array_push($ventas, $venta);				
+			}
 			
 			echo json_encode($ventas);
 		}			
@@ -210,6 +197,26 @@
 			}	
 			exit;
 		}			
+	} else if ($op == "getCartas"){
+			
+			$sql="SELECT * FROM Carta";
+			$result = $linkbd->query($sql);
+			
+			
+			$puja ;
+			$pujas = array();
+			while($row = mysqli_fetch_array($result)){
+				$carta = new Carta ();
+				$carta->id=$row['id'];
+				$carta->nombre=$row['nombre'];
+				$carta->descripcion=$row['descripcion'];
+				$carta->url=$row['url'];
+				
+				array_push($pujas, $puja);				
+			}
+			
+			echo json_encode($pujas);
+					
 	} 
 
 
