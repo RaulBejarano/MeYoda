@@ -175,9 +175,6 @@
 		if (isset($_GET["idUsuario"]) && isset($_GET["idCarta"]) && isset($_GET["valordeseado"])){
 
 			$sql='INSERT INTO Venta (idUsuario, idCarta, valordeseado) VALUES ('.$_GET["idUsuario"].', '.$_GET["idCarta"].', '.$_GET["valordeseado"].')';
-				echo $sql.'<br>';
-			$result = $linkbd->query($sql);
-			
 			
 			if ($linkbd->query($sql)) {
 				echo "true";			
@@ -190,9 +187,6 @@
 		if (isset($_GET["idUsuario"]) && isset($_GET["idVenta"]) && isset($_GET["valorpuja"])){
 			
 			$sql="INSERT INTO Puja (idUsuario, idVenta, valorpuja) VALUES (".$_GET["idUsuario"].", ".$_GET["idVenta"].", ". $_GET["valorpuja"].")";
-
-			$result = $linkbd->query($sql);
-			
 			
 			if ($linkbd->query($sql)) {
 				echo "true";			
@@ -207,8 +201,8 @@
 			$result = $linkbd->query($sql);
 			
 			
-			$puja ;
-			$pujas = array();
+			$carta ;
+			$cartas = array();
 			while($row = mysqli_fetch_array($result)){
 				$carta = new Carta ();
 				$carta->id=$row['id'];
@@ -216,10 +210,10 @@
 				$carta->descripcion=$row['descripcion'];
 				$carta->url=$row['url'];
 				
-				array_push($pujas, $puja);				
+				array_push($cartas, $carta);				
 			}
 			
-			echo json_encode($pujas);
+			echo json_encode($cartas);
 					
 	} 
 
