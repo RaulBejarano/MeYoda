@@ -6,14 +6,21 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.talentum.meyodademo.requests.HttpRequest;
@@ -26,9 +33,12 @@ import java.security.NoSuchAlgorithmException;
  */
 public class Registro extends Activity implements View.OnClickListener {
 
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.registro);
+
+
 
         Button botonEnviar = (Button) (findViewById(R.id.buttonEnviar));
         botonEnviar.setOnClickListener(this);
@@ -36,8 +46,11 @@ public class Registro extends Activity implements View.OnClickListener {
         EditText textoNombre = (EditText) (findViewById(R.id.campoNombre));
         EditText textoApellidos = (EditText) (findViewById(R.id.campoApellidos));
         EditText textoEmail = (EditText) (findViewById(R.id.campoEmail));
+
         EditText textoClave = (EditText) (findViewById(R.id.campoContrasena));
+
         EditText textoConfirmClave = (EditText) (findViewById(R.id.campoConfirmacion));
+
     }
 
     @Override
@@ -46,8 +59,14 @@ public class Registro extends Activity implements View.OnClickListener {
         String nombre = ((EditText)findViewById(R.id.campoNombre)).getText().toString();
         String apellidos = ((EditText)findViewById(R.id.campoApellidos)).getText().toString();
         String email =  ((EditText)findViewById(R.id.campoEmail)).getText().toString();
-        String clave =  ((EditText)findViewById(R.id.campoContrasena)).getText().toString();
+        final String  clave =  ((EditText)findViewById(R.id.campoContrasena)).getText().toString();
         String confirmClave = ((EditText)findViewById(R.id.campoConfirmacion)).getText().toString();
+
+        Bitmap check = BitmapFactory.decodeResource(getResources(),R.drawable.checkbox);
+        Bitmap error = BitmapFactory.decodeResource(getResources(),R.drawable.error);
+        ImageView c = (ImageView) findViewById(R.id.checkbox);
+
+
         if(nombre.length()==0||apellidos.length()==0||email.length()==0||clave.length()==0){
             Toast.makeText(Registro.this, "Error, campos vacios", Toast.LENGTH_LONG).show();
             return;
@@ -64,10 +83,15 @@ public class Registro extends Activity implements View.OnClickListener {
             Toast.makeText(Registro.this, "Error en el email", Toast.LENGTH_LONG).show();
             return;
         }
+
         if(clave.compareTo(confirmClave)!=0){
             Toast.makeText(Registro.this, "Las claves no coinciden", Toast.LENGTH_LONG).show();
+            c.setImageBitmap(error);
             return;
+        }else{
+            c.setImageBitmap(check);
         }
+
         String claveEncriptada = md5(clave);
 
         registrarUsuario reg = new registrarUsuario();

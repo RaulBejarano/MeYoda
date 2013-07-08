@@ -51,47 +51,42 @@
 </head>
   <!--Variables php    -->
 
-  <?php
-  /**/$desde = $_GET["desde"];
-    if (!isset($desde))
-      $desde = 0;
 
-  $linkbd=mysql_connect("mysql.manu.juanlu.is","talentum", "hypernova"); //Conexion BD
-  $linkbd1=mysql_select_db("meyodadb");
   
-  ?>
+ 
   
 
                   <?php
-                    $resultado = mysql_query("select nombre from Carta limit $desde, 8", $linkbd)
-                      or die("Error, la consulta especificada no se ha llevado a cabo con éxito");
+                  if ($session=session_id())
+                  {
+                 // $session = 9;
+                    $data = json_decode(file_get_contents('http://manu.juanlu.is/meyoda/mvc/controller/controller.php?op=misVentas&id='.$session));
 
-                    $descripcion = mysql_query("select descripcion from Carta", $linkbd)
-                      or die("Error, la consulta de la descripcion no se ha llevado a cabo con éxito");
-
-                    $url = mysql_query("select url from Carta",$linkbd)
-                      or die("Error, la consulta de la url no se ha llevado a cabo con éxito");
-
-                      $numeroFilasTotales = mysql_num_rows($resultado);
-                    
-                
-             /**/ $i=1;
-                  
                    
+
+                /*    echo $data[0]->carta->id;
+                    echo $data[0]->carta->nombre;
+                    echo $data[0]->carta->url;
+
+                     echo $data[1]->carta->id;
+                    echo $data[1]->carta->nombre;
+                    echo $data[1]->carta->url;
+                    //echo $myArray['payload']['ign'];*/
+
+                   $i=1;
                    while($i <= 8) {
-                    echo ' 
+                   ?>
   <div class="span4">
 
               <div class="widget wblack5">
 
                 <div class="widget-head">
-                  <div class="pull-left">';
+                  <div class="pull-left">
 
-                      $fila = mysql_fetch_array($resultado);
-                      echo $fila['nombre'] ;
-                    
+                    <?php
+                    echo $data[$i]->carta->nombre;
                 
-                       echo'                  </div>
+                      ?>             </div>
 
                
                   <div class="clearfix"></div>
@@ -103,20 +98,29 @@
                     <!-- Visitors, pageview, bounce rate, etc., Sparklines plugin used -->
                     <ul class="current-status">
                       <li>
-                          <a href=* > <img src="';
+                          <a href=* > <img src="
 
-                          $url1 = mysql_fetch_array($url);
-                          echo $url1['url'];
-                          echo '" height="160" width="180"/></a> 
+                          <?php
+
+                         echo $data[$i]->carta->url;
+                         ?>
+
+                          " height="160" width="180"/></a> 
                       </li>
                       <li>
-                        Descripcion:' ;
-                        $descrip = mysql_fetch_array($descripcion);
-                        echo $descrip['descripcion'];
 
-                        echo '  
+                        Descripcion:' 
+                        <?php 
+                       
+                       echo $data[$i]->carta->descripcion;
+
+                        ?>  
+                        <br>
+                        Precio venta: 
+                        <?php
                         
-                        
+                        echo $data[$i]->carta->precio;
+                        ?>
                       </li>                         
                     </ul>
 
@@ -125,27 +129,30 @@
 
               </div>
               
-            </div>';
+            </div>
+            <?php 
             $i++;
           }
 
           if ($desde == 0)
     {
       $desde = $desde + 8;
-      echo "<a href = ventas.php?desde=$desde>[8 siguientes]</a>";
+      echo "<a href = misventas.php?desde=$desde>[8 siguientes]</a>";
     }
     else if ($numeroFilasTotales > 8)
       {
         $OchoSiguientes = $desde + 8;
         $OchoAnteriores = $desde - 8;
-        echo "<a href = ventas.php?desde=$OchoAnteriores>[8 anteriores] </a>";
-        echo "<a href = ventas.php?desde=$OchoSiguientes> [8 siguientes]</a>";
+        echo "<a href = misventas.php?desde=$OchoAnteriores>[8 anteriores] </a>";
+        echo "<a href = misventas.php?desde=$OchoSiguientes> [8 siguientes]</a>";
       }
       else
       {
         $desde = $desde - 8;
-        echo "<a href = ventas.php?desde=$desde>[8 anteriores]</a>";
+        echo "<a href = misventas.php?desde=$desde>[8 anteriores]</a>";
       }
+
+      }//fin del if primero
                   ?>
 
     

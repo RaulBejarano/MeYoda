@@ -1,5 +1,5 @@
 <?php  
-
+session_start();
 if( isset($_POST['loginForm']) ){
 $errors = array();
   $email = "";
@@ -44,9 +44,12 @@ $errors = array();
       
 
           $data = mysqli_fetch_array($query);
-          $_SESSION["s_email"] = $data['email'];
-          echo "Bienvenido ".$data['nombre']." !";
-          echo '<meta http-equiv="refresh" content="0;url=http://manu.juanlu.is/meyoda/home.php" />';
+          // $_SESSION["s_email"] = $data['email'];
+          // echo "Bienvenido ".$data['nombre']." !";
+          $_SESSION['email']  = $data['email'];
+          $_SESSION['nombre'] = $data['nombre'];
+          $_SESSION['id']     = $data['id'];            
+          echo '<meta http-equiv="refresh" content="0;url=http://manu.juanlu.is/meyoda/home.php" >';
 
         }else{
           $errors[] .= "Credenciales incorrectos";
@@ -74,7 +77,7 @@ $errors = array();
           </ul>
           </div>
           <div class="modal-footer">
-            <a href="#" data-dismiss="modal" class="btn">Close</a>
+            <a href="#" data-dismiss="modal" class="btn">Cerrar</a>
           </div>
         </div>         
       <?
@@ -139,21 +142,30 @@ if( isset($_POST['nuevoRegistro']) ){
     if (count($errors) == 0) {
 
       //comprobacion de user mas pass
-      $query = $linkbd->query("INSERT into Usuario (nombre,apellidos,email,contrasena) VALUES ('$nombre','$apellidos','$email' , '$contrasena' ") or die($linkbd->error);
+      $query = $linkbd->query("INSERT into Usuario (nombre,apellidos,email,contrasena) VALUES ('$nombre','$apellidos','$email' , '$contrasena') ") or die($linkbd->error);
       if ($query) {
 
-        echo 'insertado con id: ' .  $linkbd->id;
-        // if ($linkbd->affected_rows > 0) {
-      
+        ?>
+            <div class="modal fade alert-info">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4><strong>Registrado!</strong></h4>
+              </div>
+              <div class="modal-body">
+                <p>Ya puedes acceder a nuestro portal con tu usuario y contrase&ntilde;a</p>
+              </div>
+              <div class="modal-footer">
+                <a href="#" data-dismiss="modal" class="btn">Cerrar</a>
+              </div>
+            </div>
+            <script type="text/javascript">
+              $('#inputEmail').focus();
+            </script>
+        <?  
 
-        //   $data = mysqli_fetch_array($query);
-        //   $_SESSION["s_username"] = $data['email'];
-        //   echo "Has sido logueado correctamente ".$_SESSION['s_username']." y puedes acceder al index.php.";
 
-        //   echo '';
-        // }else{
-        //   $errors[] .= "Credenciales incorrectos";
-        // }
+
+
       }
 
 
