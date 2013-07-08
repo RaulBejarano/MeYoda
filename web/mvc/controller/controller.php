@@ -197,7 +197,13 @@
 		}			
 	} else if ($op == "getCartas"){
 			
-			$sql="SELECT * FROM Carta";
+		$condicion='1 = 1';
+			
+		if(isset($_GET['condicion'])){
+			$condicion = $_GET['condicion'];
+		}
+		
+			$sql="SELECT * FROM Carta WHERE ".$condicion;
 			$result = $linkbd->query($sql);
 			
 			
