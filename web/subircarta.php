@@ -54,10 +54,39 @@
                   <div class="widget-head">
                     <div class="pull-left">
                     <?
-
                     echo $row['nombre'] ;
-                    ?>                 
+                    ?>         
+                    </div>         
+                    <div class="clearfix"></div>
+                  </div>             
+                  <div class="widget-content">
+                    <div class="padd">
+                      <ul class="current-status">
+                        <li><a> <img src="<?php echo $row['url'];?>" height="160" width="180"/></a></li>
+                        <li>
+                         Descripcion:
+                          <?
+                            echo $row['descripcion'] ;
+                          ?>
+                        </li> 
+                        <form>
+                          Precio: <input id="<?php echo "precio-".$row['id']; ?>" name="precio" style="width:50px;margin:5px;" size="4" maxlength="4"><strong>&#128;</strong><br> 
+                          <a id="" href="#addCardModal" data-toggle="modal" class="btn btn-inverse addCard"   data-carta-id="<?php echo $row['id']; ?>" data-carta-nombre="<?php echo $row['nombre']; ?>">A&ntilde;adir a Mazo</a>
+                        </form>                                                  
+                      </ul>
                     </div>
+                  </div>
+                </div>     
+              </div>              
+<!--               <div class="span3 cartaFrame">
+                <div class="widget wblack5">
+                  <div class="widget-head">
+                    <div class="pull-left"> -->
+                    <?
+
+                    // echo $row['nombre'] ;
+                    ?>                 
+<!--                     </div>
                     <div class="clearfix"></div>
 
                   </div>             
@@ -65,27 +94,34 @@
                     <div class="padd">
                       <ul class="current-status" style="text-align:center;">
                         <li>
-
-                          <a> <img src="<?php echo $row['url']?>" height="160" width="180"/></a> 
+                          <a> <img src="<?php 
+                          // echo $row['url']
+                          ?>" height="160" width="180"/></a> 
                         </li>
-                        <li style="text-align:left;">
+                        <li style="text-align:left;"> -->
                           <?php  
-
-                            echo $row['descripcion'];
+                            // echo $row['descripcion'];
                           ?>
-                        </li> 
+  <!--                       </li> 
                         <form>
-                          Precio: <input style="width:50px;margin:5px;" size="4" maxlength="4"><br>
-                          <button class="btn btn-inverse" type="submit">A&ntilde;adir a Mazo</button>
+                          Precio: <input id="
+                          // <?php 
+                          // echo "precio-".$row['id']; 
+                          ?>" name="precio" style="width:50px;margin:5px;" size="4" maxlength="4"><strong>&#128;</strong><br> 
+                          <a id="" href="#addCardModal" data-toggle="modal" class="btn btn-inverse addCard"   data-carta-id="
+                          <?php 
+                          // echo $row['id']; 
+                          ?>" data-carta-nombre="
+
+                          <?php 
+                          // echo $row['nombre']; 
+                          ?>">A&ntilde;adir a Mazo</a>
                         </form>                        
                       </ul>
-
                     </div>
                   </div>
-
-                </div>
-                          
-              </div>
+                </div>                          
+              </div> -->
               <?
             }
             ?>
@@ -96,7 +132,21 @@
   }        
 
 ?>
+<div class="modal hide fade" id="addCardModal">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>Carta a&ntilde;adida</h3>
+  </div>
+  <div id="modal-body-addCard" style="padding:20px;">
+    La carta seleccionada ha sido a&ntilde;adida a tus ventas.
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn" data-dismiss="modal">Cerrar</a>
+  </div>
+</div>
+<script type="text/javascript">
 
+</script>
   <!-- <div class="span4">
     <div class="widget wblue">
       <div class="widget-head">

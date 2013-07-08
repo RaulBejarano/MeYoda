@@ -1,6 +1,5 @@
 <?php 
-session_start();
-
+  session_start();
 
 ?>
 <html>
@@ -31,9 +30,17 @@ session_start();
         background: #fff;
         color: rgb(219, 82, 47);
       }
+      #gritter-notice-wrapper
+      {
+        opacity: 0;
+      }
+      body{
+        overflow-x: hidden;
+      }
     </style>
 </head>
 <body>
+<span class="hide" id="idUsuario"><?php echo $_SESSION['id']; ?></span>
 <?php if (isset($_SESSION['nombre'])){ ?>
   
 <div class="navbar navbar-fixed-top navbar-inverse">
@@ -267,6 +274,31 @@ session_start();
 
 
     <script type="text/javascript">
+    $('#gritter-notice-wrapper').hide();
+    
+    $('.addCard').click(function(){
+
+      console.log('has hecho click');
+      var id = $(this).attr('data-carta-id');
+      var precio = $('#precio-'+id).val();
+      var idUsuario = $('#idUsuario').text();
+
+      $('#modal-body-addCard').html('La carta ' +$(this).attr('data-carta-nombre') + ' ha sido a&ntilde;adida a tu mazo, con un precio de venta de <strong>'+precio+'&#128;</strong>.');
+    // http://manu.juanlu.is/meyoda/mvc/controller/controller.php?op=nuevaVenta&idUsuario=9&idCarta=22&valordeseado=300   
+    
+
+    var url = "http://manu.juanlu.is/meyoda/mvc/controller/controller.php?op=nuevaVenta&idUsuario="+idUsuario+"&idCarta="+id+"&valordeseado="+precio; // the script where you handle the form input.
+
+    $.ajax({
+           type: "POST",
+           url: url, // serializes the form's elements.
+           success: function(data)
+           {
+               // alert(data); // show response from the php script.
+           }
+         });
+
+    });    
 
     // var currentSection = "inicio";
 
