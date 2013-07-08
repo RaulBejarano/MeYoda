@@ -173,9 +173,9 @@
 		}			
 	} else if ($op == "nuevaVenta"){
 		if (isset($_GET["idUsuario"]) && isset($_GET["idCarta"]) && isset($_GET["valordeseado"])){
-			
-			$sql="INSERT INTO Venta (idUsuario, idCarta, valordeseado) VALUES (($_GET["idUsuario"], $_GET["idCarta"], ". $_GET["valordeseado"].")";
 
+			$sql='INSERT INTO Venta (idUsuario, idCarta, valordeseado) VALUES ('.$_GET["idUsuario"].', '.$_GET["idCarta"].', '.$_GET["valordeseado"].')';
+				echo $sql.'<br>';
 			$result = $linkbd->query($sql);
 			
 			
