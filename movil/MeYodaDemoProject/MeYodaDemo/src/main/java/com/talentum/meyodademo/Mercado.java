@@ -110,7 +110,7 @@ public class Mercado extends Fragment{
                         e.printStackTrace();
                         foto = BitmapFactory.decodeResource(getResources(),R.drawable.meyodalogo);
                     }
-                    RowItem row = new RowItem(foto,elemento.getCarta().getNombre()+"\n"+elemento.getCarta().getDescripcion()+"\n"+elemento.getPrecioDeseado()+"€");
+                    RowItem row = new RowItem(foto,elemento.getCarta().getNombre());
                     rows.add(row);
                     int pos = cartas.indexOf(elemento);
                     int p = (int)((pos+1)*100/totalprog);
