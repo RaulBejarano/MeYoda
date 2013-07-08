@@ -42,9 +42,27 @@ $registerErrors = array();
   <script src="js/bootstrap.min.js"></script>
   <script src="js/meyoda.js"></script> 
   <script type="text/javascript">
+  $('.carousel').carousel();
     $('.modal').modal();
 
-   
+    var pss1 = $('#pss').val();
+    var pss2 = $('#pss2').val();
+
+    function checkPasswords(){
+      var pss1 = $('#pss').val();
+      var pss2 = $('#pss2').val();
+      if (pss1 == pss2) {
+        $('#checkPasswords').removeClass('badge-important').addClass('badge-success');
+        $('#checkPasswords').html('<i class="icon-ok icon-white"></i>');
+
+      };
+    }
+    $('#pss').change(function(){
+      checkPasswords();
+    });
+    $('#pss2').change(function(){
+      checkPasswords();
+    });    
 
 
     $('#logRegDiv').load('login.php');

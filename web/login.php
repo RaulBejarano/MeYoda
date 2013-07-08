@@ -2,7 +2,7 @@
 
   <form class="form-horizontal" style="text-align:center;" action="" method="post">
     <div class="control-group">
-      <input type="text" name="inputEmail" placeholder="Email">          
+      <input type="email" name="inputEmail" placeholder="Email">          
     </div>
     <div class="control-group">
       <input type="password" name="inputPassword" placeholder="Contrase&ntilde;a">

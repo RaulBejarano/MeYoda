@@ -64,16 +64,20 @@
 		exit;
 		
 	} else if ($op == "misVentas"){
-		if (isset($_GET['d'])){
+		if (isset($_GET['id'])){
 			$condicion=1;
 			$valor = 1;
 			if(isset($_GET['condicion']) && $_GET['valor']){
-				$condicion = $_GET['condicion'];
-				$valor = $_GET['valor'];
+				$condicion 	= $_GET['condicion'];
+				$valor 		= $_GET['valor'];
+				$sql="SELECT V.*, C.nombre, C.descripcion, C.url FROM Venta V, Carta C 
+					WHERE V.idCarta=C.id AND V.idUsuario = ".$_GET['id']." AND ".$condicion." = ".$valor;				
+			}else{
+				$sql="SELECT V.*, C.nombre, C.descripcion, C.url FROM Venta V, Carta C 
+					WHERE V.idCarta=C.id AND V.idUsuario = ".$_GET['id'];				
 			}
 			
-			$sql="SELECT V.*, C.nombre, C.descripcion, C.url FROM Venta V, Carta C 
-				WHERE V.idCarta=C.id AND V.idUsuario = ".$_GET['id']." AND ".$condicion." = ".$valor;
+
 			$result = $linkbd->query($sql);
 			
 			// id, idUsuario, idCarta, valordeseado, aprobada, vendida, pago_enviado, nombre, descripcion, url
@@ -105,32 +109,41 @@
 			if(isset($_GET['condicion']) && $_GET['valor']){
 				$condicion = $_GET['condicion'];
 				$valor = $_GET['valor'];
+				$sql = "SELECT V.*, C.* FROM Venta V, Carta C 
+					WHERE V.idCarta=C.id AND V.idUsuario != ".$_GET['id']." AND ".$condicion." = ".$valor;					
+			}else{
+				$sql = "SELECT V.*, C.* FROM Venta V, Carta C 
+					WHERE V.idCarta=C.id AND V.idUsuario != ".$_GET['id'];				
 			}
+
+
 			
-			$sql="SELECT V.*, C.* FROM Venta V, Carta C 
-				WHERE V.idCarta=C.id AND V.idUsuario != ".$_GET['id']." AND ".$condicion." = ".$valor;
+			
+			
 			$result = $linkbd->query($sql);
 			
 			// id, idUsuario, idCarta, valordeseado, aprobada, vendida, pago_enviado, nombre, descripcion, url
 			
 			$venta ;
 			$ventas = array();
-			while($row = mysqli_fetch_array($result)){
-				$venta = new Venta();
-				$venta->id = $row['id'];
-				$venta->valordeseado = $row['valordeseado'];
-				$venta->aprobada = $row['aprobada'];
-				$venta->vendida = $row['vendida'];
-				$venta->pago_enviado['pago_enviado'];
-			
-				$venta->carta = new Carta();
-				$venta->carta->id = $row['idCarta'];
-				$venta->carta->nombre = $row['nombre'];
-				$venta->carta->descripcion = $row['descripcion'];
-				$venta->carta->url = $row['url'];
+			if ($result) {
+				while($row = mysqli_fetch_array($result)){
+					$venta = new Venta();
+					$venta->id = $row['id'];
+					$venta->valordeseado = $row['valordeseado'];
+					$venta->aprobada = $row['aprobada'];
+					$venta->vendida = $row['vendida'];
+					$venta->pago_enviado['pago_enviado'];
 				
-				array_push($ventas, $venta);				
-			}
+					$venta->carta = new Carta();
+					$venta->carta->id = $row['idCarta'];
+					$venta->carta->nombre = $row['nombre'];
+					$venta->carta->descripcion = $row['descripcion'];
+					$venta->carta->url = $row['url'];
+					
+					array_push($ventas, $venta);				
+				}
+			}	
 			
 			echo json_encode($ventas);
 		}			
