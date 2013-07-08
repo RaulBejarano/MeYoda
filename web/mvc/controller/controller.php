@@ -173,6 +173,7 @@
 		if (isset($_GET["idUsuario"]) && isset($_GET["idCarta"]) && isset($_GET["valordeseado"])){
 			
 			$sql="INSERT INTO Venta (idUsuario, idCarta, valordeseado) VALUES ($idUsuario, $idCarta, $valordeseado)";
+			echo $sql;
 			$result = $linkbd->query($sql);
 			
 			
@@ -187,6 +188,7 @@
 		if (isset($_GET["idUsuario"]) && isset($_GET["idVenta"]) && isset($_GET["valordeseado"])){
 			
 			$sql="INSERT INTO Puja (idUsuario, idVenta, valorpuja) VALUES ($idUsuario, $idVenta, $valorpuja)";
+			echo $sql;
 			$result = $linkbd->query($sql);
 			
 			
