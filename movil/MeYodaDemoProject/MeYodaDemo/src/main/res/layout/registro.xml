@@ -63,11 +63,11 @@
                 android:ems="10"
                 android:id="@+id/campoContrasena"
                 android:textSize="25dp"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"
                 android:hint="Contraseña"
                 android:background="#4a4a4a"
-                android:textColor="#fefefe"/>
+                android:textColor="#fefefe"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"/>
 
         <EditText
                 android:layout_width="wrap_content"
@@ -76,12 +76,12 @@
                 android:ems="10"
                 android:id="@+id/campoConfirmacion"
                 android:textSize="25dp"
-                android:layout_below="@+id/campoContrasena"
-                android:layout_alignLeft="@+id/campoContrasena"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="10dp"
                 android:hint="Confirmación"
                 android:background="#4a4a4a"
-                android:textColor="#fefefe"/>
+                android:textColor="#fefefe"
+                android:layout_below="@+id/campoContrasena"
+                android:layout_alignLeft="@+id/campoContrasena"/>
 
         <Button
                 android:layout_width="wrap_content"
@@ -89,17 +89,17 @@
                 android:text="Enviar"
                 android:id="@+id/buttonEnviar"
 
-                android:layout_alignParentBottom="true"
+                android:layout_below="@+id/campoConfirmacion"
                 android:layout_centerHorizontal="true"
-                android:layout_marginBottom="17dp"/>
+                android:layout_marginTop="15dp"/>
 
         <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/checkbox"
-                android:layout_above="@+id/buttonEnviar"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="11dp"/>
+                android:layout_above="@+id/campoContrasena"
+                android:layout_centerHorizontal="true"/>
+
     </RelativeLayout>
 
     <EditText
