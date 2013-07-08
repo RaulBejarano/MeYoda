@@ -3,7 +3,8 @@
 <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        xmlns:android="http://schemas.android.com/apk/res/android">
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:background="@drawable/universo">
 
     <ListView
             android:layout_width="wrap_content"
@@ -15,6 +16,9 @@
             android:headerDividersEnabled="false"
             android:focusable="false"
             android:layout_above="@+id/searchView"
+            android:clickable="false"
+            android:divider="#ffffff"
+            android:drawSelectorOnTop="true"
             />
 
     <SearchView
@@ -26,7 +30,8 @@
             android:layout_alignParentLeft="true"
             android:inputType="text"
             android:queryHint="Una carta buscar puedes"
-            android:layout_toLeftOf="@+id/botonBuscar"/>
+            android:layout_toLeftOf="@+id/botonBuscar"
+            style="@android:style/Theme.Holo"/>
 
     <Button
             style="?android:attr/buttonStyleSmall"
@@ -38,7 +43,7 @@
             android:layout_alignParentRight="true"/>
 
     <Button
-            style="?android:attr/buttonStyleSmall"
+            style="@android:style/Widget.Holo.Button.Small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Buscar"

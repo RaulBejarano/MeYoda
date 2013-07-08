@@ -3,6 +3,7 @@ package com.talentum.meyodademo;
 import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -12,6 +13,7 @@ import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
@@ -31,7 +33,9 @@ import java.util.List;
 /**
  * Created by idiez on 3/07/13.
  */
-public class Mercado extends Fragment{
+public class Mercado extends Fragment implements AdapterView.OnItemClickListener {
+
+    private List<Venta> cartas;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -58,6 +62,14 @@ public class Mercado extends Fragment{
         return fragment;
     }
 
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        if(i == -1) return;
+        Venta v = cartas.get(i);
+        String venta = new Gson().toJson(v);
+        Intent intent = new Intent(this.getActivity().getApplicationContext(),MostrarCarta.class).putExtra("carta","V;"+venta);
+        startActivity(intent);
+    }
 
 
     public class printMercado extends AsyncTask<String,Integer,Boolean> {
@@ -130,6 +142,7 @@ public class Mercado extends Fragment{
                 CustomListViewAdapter adapter = new CustomListViewAdapter((Context) Mercado.this.getActivity(),
                         R.layout.list, rows);
                 ((ListView) Mercado.this.getView().findViewById(R.id.list)).setAdapter(adapter);
+                ((ListView) Mercado.this.getView().findViewById(R.id.list)).setOnItemClickListener(Mercado.this);
             }
             else{
                 Toast.makeText(Mercado.this.getActivity(), "Error al recibir cartas", Toast.LENGTH_LONG).show();

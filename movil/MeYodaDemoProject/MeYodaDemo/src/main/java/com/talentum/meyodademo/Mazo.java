@@ -133,7 +133,7 @@ public class Mazo extends Fragment implements AdapterView.OnItemClickListener{
                 CustomListViewAdapter adapter = new CustomListViewAdapter((Context) Mazo.this.getActivity(),
                         R.layout.list, rows);
                 ((ListView) Mazo.this.getView().findViewById(R.id.favlist)).setAdapter(adapter);
-                ((ListView) Mazo.this.getView().findViewById(R.id.favlist)).setOnItemClickListener(Mazo.this);;
+                ((ListView) Mazo.this.getView().findViewById(R.id.favlist)).setOnItemClickListener(Mazo.this);
             }
             else{
                 Toast.makeText(Mazo.this.getActivity(), "Error al recibir cartas", Toast.LENGTH_LONG).show();
