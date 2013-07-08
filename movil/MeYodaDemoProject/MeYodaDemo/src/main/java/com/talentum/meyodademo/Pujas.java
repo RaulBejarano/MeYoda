@@ -63,7 +63,6 @@ public class Pujas extends Fragment implements AdapterView.OnItemClickListener {
 
         ProgressDialog progress = new ProgressDialog((Context) Pujas.this.getActivity());
         List<RowItem> rows = new ArrayList<RowItem>();
-        List<Puja> cartas;
         int totalprog;
 
         @Override

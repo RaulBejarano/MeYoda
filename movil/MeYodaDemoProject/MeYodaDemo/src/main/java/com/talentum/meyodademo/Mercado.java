@@ -77,7 +77,6 @@ public class Mercado extends Fragment implements AdapterView.OnItemClickListener
 
         ProgressDialog progress = new ProgressDialog((Context) Mercado.this.getActivity());
         List<RowItem> rows = new ArrayList<RowItem>();
-        List<Venta> cartas;
         int totalprog;
 
         @Override

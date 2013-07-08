@@ -16,9 +16,11 @@
             android:headerDividersEnabled="false"
             android:focusable="false"
             android:layout_above="@+id/searchView"
-            android:clickable="false"
+            android:clickable="true"
             android:divider="#ffffff"
-            android:drawSelectorOnTop="true"
+            android:drawSelectorOnTop="false"
+            android:stackFromBottom="false"
+            android:smoothScrollbar="false"
             />
 
     <SearchView
